@@ -1,0 +1,28 @@
+-*- text -*-
+
+
+To do:
+
+x program
+  shared lib
+x static lib
+  pkgconfig .. ?
+  configure stuff
+  yacc/lex/c/c++/objc/asm/f77/f90
+x dependency tracking
+  cross compilation
+  install scripts/data/headers
+
+x clean
+x tags
+
+  make dist
+  make distcheck
+  make check
+
+  id?  gnu global?  lisp?  java?
+
+================================================================
+
+gnu make doesn't have a nice way to find a .mk on a path
+(without requiring the user to use -I)
