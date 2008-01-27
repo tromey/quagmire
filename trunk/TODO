@@ -1,13 +1,17 @@
 -*- text -*-
 
-
 To do:
 
 x program
-  shared lib
+x shared lib
+    this needs porting, testing, and install fixes
 x static lib
-  pkgconfig .. ?
+  pkgconfig
+    should be easy to specify packages per aggregate
   configure stuff
+    this is difficult because there are a lot of inter-dependencies
+    for instance consider a common sequence of searching for a
+    function in multiple libraries
   yacc/lex/c/c++/objc/asm/f77/f90
 x dependency tracking
   cross compilation
