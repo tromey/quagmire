@@ -7,3 +7,10 @@ The build works like automake.  The package has a Makefile that
 includes Quagmire's "post.mk" at the end.  Special variables in the
 Makefile are recognized by Quagmire and turned into rules.
 
+
+One general rule in Quagmire is that if there is a simple, generic GNU
+make way to do something, then we don't need special support for it.
+This leads to many differences from the way that Automake does things.
+For instance, in Automake there is a separate quux_CFLAGS variable for
+an aggregate.  In Quagmire, you would instead use a target-specific
+CFLAGS assignment.
