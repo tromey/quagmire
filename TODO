@@ -3,19 +3,58 @@
 To do:
 
 x program
+
 x shared lib
     this needs porting, testing, and install fixes
+
 x static lib
+
   pkgconfig
     should be easy to specify packages per aggregate
+    something like:
+
+    PROGRAMS = zenity
+    zenity_PACKAGES = gtk+-2.0 >= 2.9 libglade-2.0 libgnomecanvas-2.0 glib-2.0
+
+    One general question here is whether to use magic variables, or to
+    expose .quagmire/ config targets as part of the API.  The latter
+    may be nice for optional packages?
+
   configure stuff
     this is difficult because there are a lot of inter-dependencies
     for instance consider a common sequence of searching for a
     function in multiple libraries
+
+    See the existing config.h support, which is currently pretty weak.
+    For instance we can't search for a function in a library -- only
+    in libc
+
+    Think about what to do for things like depcomp
+
   yacc/lex/c/c++/objc/asm/f77/f90
+
+    Ideally we would have better support for adding on a new language
+    than automake currently does.  For instance we could define
+    some variables per language or per-lang-and-per-platform (for
+    shared libraries)
+
 x dependency tracking
+
+    Ties into the language thing
+
   cross compilation
+
+    An aggregate could have a flag indicating if it is for the host,
+    target, or build machine... much nicer than auto*.
+
+    Need to figure out where to put object files in these cases.
+    Maybe always put them in subdirs or the like.
+
   install scripts/data/headers
+
+    We want to group things by install dir and permissions.
+    We could have a variable whose value is a list of variable names,
+    but that seems ugly.  What else?
 
 x clean
 x tags
@@ -24,9 +63,18 @@ x tags
   make distcheck
   make check
 
+    Use the automake implementations, more or less
+
   id?  gnu global?  lisp?  java?
 
 ================================================================
+==
+== GNU make wish list
 
 gnu make doesn't have a nice way to find a .mk on a path
 (without requiring the user to use -I)
+
+see checkfunc.mk -- would be nice to have a built-in 'tr' function
+
+Better syntax would make it nicer to let users use functions instead of
+the current approach.

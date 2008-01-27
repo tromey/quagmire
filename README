@@ -14,3 +14,75 @@ This leads to many differences from the way that Automake does things.
 For instance, in Automake there is a separate quux_CFLAGS variable for
 an aggregate.  In Quagmire, you would instead use a target-specific
 CFLAGS assignment.
+
+
+Currently defined variables:
+
+PROGRAMS - a list of the names of programs
+  Each program can have several attributes.
+  The attributes of a program are specified in variables named
+  after the program.  Unlike automake, the given name of the program
+  is used -- it is not rewritten.
+
+  The defined attributes are:
+
+  _SOURCES  all the source files.  headers are ignored.  other files
+  are compiled into objects and linked in
+
+  _LINK  the linker to use; the default is $(LINK.c)
+
+  _OBJECTS  the object files.  the default is computed from _SOURCES
+  _EXTRA_OBJECTS  if you don't specify _OBJECTS you can specify extra
+  objects using this.  (This may be bogus)
+
+  _LIBS the libraries to link in
+
+  _CONFIG_HEADERS the config.h headers used by this program
+
+  _INSTALLDIR the install directory for the program.  There is no
+  default
+
+  _INSTALLNAME the name of the program when it is installed.  The
+  default is the name of the program as it is built.
+
+LIBRARIES
+
+  Static libraries, used like PROGRAMS.
+
+  $(ARCHIVE) is used to build; defaults to $(AR), which defaults to 'ar'
+
+  A library is similar to a program in some ways.  Derived variables
+  which are the same: _OBJECTS, _EXTRA_OBJECTS, _CONFIG_HEADERS,
+  _INSTALLDIR, _INSTALLNAME
+
+SHARED_LIBRARIES
+
+  Also similar to PROGRAMS.
+
+  Adds -fPIC to CFLAGS and CXXFLAGS
+  Note that if you use a source in both a program and a shared
+  library, confusion may result.  (This needs a real fix)
+
+  Derived variables which are the same: _OBJECTS, _EXTRA_OBJECTS,
+  _CONFIG_HEADERS, _INSTALLDIR, _INSTALLNAME, _LINK
+
+A config header is built up by running tests, like autoconf
+Currently a config header has a single sub-variable:
+
+  _FUNCTIONS list of functions to check for.  A link test is done and
+  the config header will define HAVE_FUNCTION if function is found.
+
+Features of automake that are handled:
+  'clean' family of targets
+  dependency tracking
+  install, including DESTDIR, install-data, install-exec
+  uninstall
+  TAGS
+
+Features of automake that are not handled:
+  See TODO
+
+Features we can have that are hard to do in automake:
+  A verbose setting for builds
+  We could echo "linux kernel"-like output: "CC foo.c" ...
+  by having a variable set on the command line to choose output style
