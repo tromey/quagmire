@@ -1,3 +1,10 @@
+2008-01-27  Tom Tromey  <tromey@redhat.com>
+
+	* src/aggregate.mk: Properly expand INSTALLDIR.  Handle PACKAGES.
+	* src/post.mk: Include pkgconfig.mk.
+	* TODO: Update.
+	* src/pkgconfig.mk: New file.
+
 2008-01-26  Tom Tromey  <tromey@redhat.com>
 
 	* README: More updates.
