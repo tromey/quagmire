@@ -9,7 +9,7 @@ x shared lib
 
 x static lib
 
-  pkgconfig
+x pkgconfig
     should be easy to specify packages per aggregate
     something like:
 

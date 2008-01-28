@@ -29,6 +29,7 @@ include sources.mk
 include defcompiler.mk
 
 # Could be lazily included once.
+include pkgconfig.mk
 include aggregate.mk
 
 ifdef PROGRAMS
