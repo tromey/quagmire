@@ -1,3 +1,8 @@
+2008-01-28  Tom Tromey  <tromey@redhat.com>
+
+	* src/pkgconfig.mk (.quagmire/pkg-config/results/$(1)): Use ">>"
+	in second echo.
+
 2008-01-27  Tom Tromey  <tromey@redhat.com>
 
 	* src/aggregate.mk: Properly expand INSTALLDIR.  Handle PACKAGES.
