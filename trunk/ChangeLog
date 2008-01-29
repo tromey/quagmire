@@ -1,3 +1,8 @@
+2008-01-29  Tom Tromey  <tromey@redhat.com>
+
+	* src/lang-cxx.mk: New file.
+	* src/lang-c.mk (%.o): Remove debug statement.  Add -c.
+
 2008-01-28  Tom Tromey  <tromey@redhat.com>
 
 	* src/pkgconfig.mk (.quagmire/pkg-config/results/$(1)): Use ">>"
