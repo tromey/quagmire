@@ -62,10 +62,13 @@ x tags
   make dist
   make distcheck
   make check
+  info (& related targets: dvi, pdf, html, install-*)
+  man & install-man (?)
 
     Use the automake implementations, more or less
 
   id?  gnu global?  lisp?  java?
+  gettext
 
 ================================================================
 ==

@@ -2,16 +2,16 @@
 
 ifdef quagmire/all_sources
 
-include deps.mk
+include $(quagmire_dir)/deps.mk
 
 # C.
 ifneq ($(filter %.c,$(quagmire/all_sources)),)
-include lang-c.mk
+include $(quagmire_dir)/lang-c.mk
 endif
 
 # C++.
 ifneq ($(filter %.cxx %.C %.cpp %.cc,$(quagmire/all_sources)),)
-include lang-cxx.mk
+include $(quagmire_dir)/lang-cxx.mk
 endif
 
 ifneq ($(filter %.cxx,$(quagmire/all_sources)),)
