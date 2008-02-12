@@ -55,6 +55,8 @@ include compile.mk
 include tags.mk
 include data.mk
 
+include help.mk
+
 installdirs:
 	@list='$(quagmire/all-install-dirs)'; \
 	for dir in $$list; do \

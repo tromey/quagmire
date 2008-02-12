@@ -1,3 +1,8 @@
+2008-02-12  Tom Tromey  <tromey@redhat.com>
+
+	* src/post.mk: Include help.mk.
+	* src/help.mk: New file.
+
 2008-01-29  Tom Tromey  <tromey@redhat.com>
 
 	* src/lang-cxx.mk: New file.
