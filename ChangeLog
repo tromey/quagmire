@@ -1,5 +1,11 @@
 2008-02-12  Tom Tromey  <tromey@redhat.com>
 
+	* src/post.mk: Use quagmire_dir.
+	(quagmire_dir): New variable.
+	* src/compile.mk: Use quagmire_dir.
+
+2008-02-12  Tom Tromey  <tromey@redhat.com>
+
 	* src/post.mk: Include help.mk.
 	* src/help.mk: New file.
 

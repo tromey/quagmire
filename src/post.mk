@@ -3,6 +3,10 @@
 # FIXME: can't seem to set this with ?= here... ?
 .DEFAULT_GOAL = all
 
+# The location of quagmire's .mk files.  FIXME: this should be set by
+# configure.
+quagmire_dir = .
+
 # The base of the standard rules.
 quagmire/do-nothing: ; @true
 .PHONY: quagmire/do-nothing
@@ -19,31 +23,31 @@ distclean: quagmire/do-nothing | clean
 # Initial value.
 quagmire/all-install-dirs :=
 
-include once.mk
-include checks.mk
+include $(quagmire_dir)/once.mk
+include $(quagmire_dir)/checks.mk
 # Could be include-once...?
-include checkfunc.mk
-include configh.mk
-include sources.mk
+include $(quagmire_dir)/checkfunc.mk
+include $(quagmire_dir)/configh.mk
+include $(quagmire_dir)/sources.mk
 
-include defcompiler.mk
+include $(quagmire_dir)/defcompiler.mk
 
 # Could be lazily included once.
-include pkgconfig.mk
-include aggregate.mk
+include $(quagmire_dir)/pkgconfig.mk
+include $(quagmire_dir)/aggregate.mk
 
 ifdef PROGRAMS
-include program.mk
+include $(quagmire_dir)/program.mk
 $(foreach _prog,$(PROGRAMS),$(eval $(call quagmire/program,$(_prog))))
 endif
 
 ifdef LIBRARIES
-include staticlib.mk
+include $(quagmire_dir)/staticlib.mk
 $(foreach _lib,$(LIBRARIES),$(eval $(call quagmire/library,$(_lib))))
 endif
 
 ifdef SHARED_LIBRARIES
-include sharedlib.mk
+include $(quagmire_dir)/sharedlib.mk
 $(foreach _lib,$(SHARED_LIBRARIES),$(eval $(call quagmire/sharedlibrary,$(_lib))))
 endif
 
@@ -51,11 +55,11 @@ endif
 # $(foreach _doth,$(CONFIG_HEADERS),$(eval $(call quagmire/config.h,$(_doth))))
 # endif
 
-include compile.mk
-include tags.mk
-include data.mk
+include $(quagmire_dir)/compile.mk
+include $(quagmire_dir)/tags.mk
+include $(quagmire_dir)/data.mk
 
-include help.mk
+include $(quagmire_dir)/help.mk
 
 installdirs:
 	@list='$(quagmire/all-install-dirs)'; \
