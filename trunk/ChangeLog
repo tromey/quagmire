@@ -1,3 +1,11 @@
+2008-02-13  Tom Tromey  <tromey@redhat.com>
+
+	* README: Update.
+	* m4/quagmire.m4: New file.
+	* src/post.mk (.DEFAULT_GOAL): Remove.
+	(quagmire_dir): Remove.
+	* src/base.mk: New file.
+
 2008-02-12  Tom Tromey  <tromey@redhat.com>
 
 	* src/post.mk: Use quagmire_dir.
