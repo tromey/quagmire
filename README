@@ -3,10 +3,16 @@ macros.  Ideally we'll also replace most of configure -- configure
 itself has to remain, to pick install directories and the like, but
 most of its checks should be done in the Makefile.
 
-The build works like automake.  The package has a Makefile that
-includes Quagmire's "post.mk" at the end.  Special variables in the
-Makefile are recognized by Quagmire and turned into rules.
 
+Use the AM_QUAGMIRE macro in your configure.ac to do the work needed
+for Quagmire.  Currently this emits a '.quagmire/variables.in' file
+which contains all the variable settings (AC_SUBSTs) found by
+configure. This macro also emits a Makefile in the build directory.
+
+Your part of the build is written a bit like automake input.  Your
+package should have a file named "Quagmire" -- this is actually a
+Makefile fragment.  Special variables in Quagmire are recognized and
+turned into rules.
 
 One general rule in Quagmire is that if there is a simple, generic GNU
 make way to do something, then we don't need special support for it.

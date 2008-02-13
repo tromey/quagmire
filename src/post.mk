@@ -1,12 +1,5 @@
 # post.mk - Include after user code.
 
-# FIXME: can't seem to set this with ?= here... ?
-.DEFAULT_GOAL = all
-
-# The location of quagmire's .mk files.  FIXME: this should be set by
-# configure.
-quagmire_dir = .
-
 # The base of the standard rules.
 quagmire/do-nothing: ; @true
 .PHONY: quagmire/do-nothing
