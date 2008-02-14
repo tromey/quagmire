@@ -51,6 +51,11 @@ PROGRAMS - a list of the names of programs
   _INSTALLNAME the name of the program when it is installed.  The
   default is the name of the program as it is built.
 
+  _PACKAGES.  The value is a package specification to be passed to
+  pkg-config.  Using this automatically adds the appropriate values to
+  _CFLAGS and _LIBS for this target (no way to work with CXXFLAGS -- a
+  bug)
+
 LIBRARIES
 
   Static libraries, used like PROGRAMS.
@@ -59,7 +64,7 @@ LIBRARIES
 
   A library is similar to a program in some ways.  Derived variables
   which are the same: _OBJECTS, _EXTRA_OBJECTS, _CONFIG_HEADERS,
-  _INSTALLDIR, _INSTALLNAME
+  _INSTALLDIR, _INSTALLNAME, _PACKAGES
 
 SHARED_LIBRARIES
 
@@ -70,7 +75,7 @@ SHARED_LIBRARIES
   library, confusion may result.  (This needs a real fix)
 
   Derived variables which are the same: _OBJECTS, _EXTRA_OBJECTS,
-  _CONFIG_HEADERS, _INSTALLDIR, _INSTALLNAME, _LINK
+  _CONFIG_HEADERS, _INSTALLDIR, _INSTALLNAME, _LINK, _PACKAGES
 
 A config header is built up by running tests, like autoconf
 Currently a config header has a single sub-variable:
