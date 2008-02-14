@@ -1,5 +1,15 @@
 2008-02-13  Tom Tromey  <tromey@redhat.com>
 
+	* README: Document _PACKAGES.
+	* src/pkgconfig.mk (.quagmire/pkg-config/results/$(1)): Fix
+	quoting.
+	($(1)): New target.
+	(.quagmire/pkg-config/min-version): Print 'ok'.
+	(mostlyclean/pkg-config-$(1)): New target.
+	* src/aggregate.mk: Fix typo.
+
+2008-02-13  Tom Tromey  <tromey@redhat.com>
+
 	* README: Update.
 	* m4/quagmire.m4: New file.
 	* src/post.mk (.DEFAULT_GOAL): Remove.

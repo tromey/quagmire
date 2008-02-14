@@ -12,7 +12,7 @@ $(1)_OBJECTS := $$($(1)_BASE_OBJECTS) $$($(1)_EXTRA_OBJECTS)
 $(foreach _doth,$($(1)_CONFIG_HEADERS),$(call quagmire/expand-once,header-$(_doth),$(call quagmire/config.h,$(_doth))))
 
 # Look for package requirements.
-$(if $($(1)_PACKAGES),$(call quagmire/pkg-config,$(1),$(1)_PACKAGES))
+$(if $($(1)_PACKAGES),$(call quagmire/package,$(1),$(1)_PACKAGES))
 
 # Add the sources to the list of all sources.  This is used to
 # determine which language rules must be made available.

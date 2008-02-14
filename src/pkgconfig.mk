@@ -16,7 +16,7 @@ PKG_CONFIG_MIN_VERSION ?= 0.9.0
 # FIXME: should depend on tool path
 .quagmire/pkg-config/min-version: | .quagmire/pkg-config
 	@if $(PKG_CONFIG) --atleast-pkgconfig-version $(PKG_CONFIG_MIN_VERSION); then \
-	  echo > $@; \
+	  echo ok > $@; \
 	else \
 	  echo "Your version of pkg-config is too old." 1>&2; \
 	  echo "You need version $(PKG_CONFIG_MIN_VERSION) or newer." 1>&2; \
@@ -34,11 +34,19 @@ define quagmire/package
 # FIXME: print something here?
 .quagmire/pkg-config/results/$(1): .quagmire/pkg-config/min-version | .quagmire/pkg-config/results
 	@$$(PKG_CONFIG) --exists $$($(2))
-	@echo "$(1): CFLAGS += \\" > $@
-	@$$(PKG_CONFIG) --cflags $$($(2)) >> $@
-	@echo "$(1): LIBS += \\" >> $@
-	@$$(PKG_CONFIG) --libs $$($(2)) >> $@
+	@echo "$(1): CFLAGS += \\" > $$@
+	@$$(PKG_CONFIG) --cflags $$($(2)) >> $$@
+	@echo "$(1): $(1)_LIBS += \\" >> $$@
+	@$$(PKG_CONFIG) --libs $$($(2)) >> $$@
+
+$(1): | .quagmire/pkg-config/results/$(1)
 
 -include .quagmire/pkg-config/results/$(1)
+
+# FIXME: namespace.  not just here but all clean targets.
+mostlyclean/pkg-config-$(1):
+	@rm -f .quagmire/pkg-config/results/$(1)
+.PHONY: mostlyclean/pkg-config-$(1)
+mostlyclean: mostlyclean/pkg-config-$(1)
 
 endef
