@@ -2,14 +2,26 @@
 
 # FIXME: other depmodes
 # FIXME: static patterns and renaming?
-# FIXME: configury for CC
-# FIXME: fails when $(CC) has spaces -- need make functionality??
 # FIXME: needs secondary expansion
-%.o: %.c | .quagmire/$(CC)-compiler $(DEPDIR)
-	$(COMPILE.c) -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Po -c $(OUTPUT_OPTION) $<
+
+# quagmire/lang-c-rule NAME
+# NAME is the munged name of the compiler
+define quagmire/lang-c-rule
+%.o: %.c | $(DEPDIR)
+ifeq ($(quagmire/depmode-$(1)),gcc3)
+	$$(COMPILE.c) -MT $$@ -MMD -MP -MF $$(DEPDIR)/$*.Po -c $$(OUTPUT_OPTION) $$<
+else
+	depmode=$(quagmire/depmode-$(1)) source="$$<" object="$$@" \
+	DEPDIR="$$(DEPDIR)" libtool=no \
+	$$(quagmire_dir)/depcomp $$(COMPILE.c) -c $$(OUTPUT_OPTION) $$<
+endif
+endef
 
 CC ?= gcc
 CFLAGS ?= -g -O2
 CPPFLAGS ?= -I.
 
-$(eval $(call quagmire/defcompiler,$(CC)))
+# We have to ensure that the depcomp variable is set before we can
+# expand the %.o rule.
+$(eval $(call quagmire/defcompiler,$(call quagmire/compiler-name,$(CC)),$(CC)))
+$(eval $(call quagmire/lang-c-rule,$(call quagmire/compiler-name,$(CC))))
