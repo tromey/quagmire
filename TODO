@@ -2,6 +2,12 @@
 
 To do:
 
+- distclean needs work
+  should remove Makefile, config.status, etc
+
+- need support for configure-generated files
+  should be automated like variables.in
+
 x program
 
 x shared lib
@@ -72,12 +78,22 @@ x tags
 
 ================================================================
 ==
+== Automake features we (probably) *don't* want
+
+- ansi2knr
+
+- anything else?
+
+
+================================================================
+==
 == GNU make wish list
 
 gnu make doesn't have a nice way to find a .mk on a path
 (without requiring the user to use -I)
 
 see checkfunc.mk -- would be nice to have a built-in 'tr' function
+perhaps a builtin regsub too, for depcomp stuff
 
 Better syntax would make it nicer to let users use functions instead of
 the current approach.

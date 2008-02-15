@@ -1,3 +1,13 @@
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
+	* src/lang-c.mk (%.o): Call compiler-name.
+	(quagmire/lang-c-rule): New function.
+	* src/defcompiler.mk (quagmire/compiler-name): New function.
+	(quagmire/defcompiler): Take second argument.  Run check-depcomp.
+	* src/check-depcomp: New file.
+	* m4/quagmire.m4: Use abs_srcdir.
+	* src/depcomp: New file, from Automake.
+
 2008-02-13  Tom Tromey  <tromey@redhat.com>
 
 	* README: Document _PACKAGES.

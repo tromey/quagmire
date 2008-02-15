@@ -1,0 +1,93 @@
+#! /bin/sh
+
+# Discover compiler's dependency-tracking approach.
+# Shamelessly taken from Automake's depend.m4.
+# Usage: check-depcomp DEPCOMP VARNAME CC
+# DEPCOMP: absolute path of depcomp executable.
+# VARNAME: name of resulting Makefile variable
+# CC: compiler to use
+# Prints "var = value" to stdout.
+
+if test "$#" -ne 3; then
+   echo "usage: check-depcomp depcomp varname cc" 1>&2
+   exit 1
+fi
+depcomp=$1
+varname=$2
+depcc=$3
+
+# We make a subdir and do the tests there.  Otherwise we can end up
+# making bogus files that we don't know about and never remove.  For
+# instance it was reported that on HP-UX the gcc test will end up
+# making a dummy file named `D' -- because `-MD' means `put the output
+# in D'.
+mkdir conftest$$.dir
+cd conftest$$.dir
+# We will build objects and dependencies in a subdirectory because
+# it helps to detect inapplicable dependency modes.  For instance
+# both Tru64's cc and ICC support -MD to output dependencies as a
+# side effect of compilation, but ICC will put the dependencies in
+# the current directory while Tru64 will put them in the object
+# directory.
+mkdir sub
+
+compiler_type=none
+compiler_list=`sed -n 's/^#*\([a-zA-Z0-9]*\))$/\1/p' < $depcomp`
+for depmode in $compiler_list; do
+   # Setup a source with many dependencies, because some compilers
+   # like to wrap large dependency lists on column 80 (with \), and
+   # we should not choose a depcomp mode which is confused by this.
+   #
+   # We need to recreate these files for each test, as the compiler may
+   # overwrite some of them when testing with obscure command lines.
+   # This happens at least with the AIX C compiler.
+   : > sub/conftest.c
+   for i in 1 2 3 4 5 6; do
+      echo '#include "conftst'$i'.h"' >> sub/conftest.c
+      # Using `: > sub/conftst$i.h' creates only sub/conftst1.h with
+      # Solaris 8's {/usr,}/bin/sh.
+      touch sub/conftst$i.h
+   done
+   echo "include sub/conftest.Po" > confmf
+
+   case $depmode in
+    nosideeffect)
+       # After this tag, mechanisms are not by side-effect, we don't
+       # use these in Quagmire.  FIXME?
+       break
+       ;;
+    none) break ;;
+    esac
+    # We check with `-c' and `-o' for the sake of the "dashmstdout"
+    # mode.  It turns out that the SunPro C++ compiler does not properly
+    # handle `-M -o', and we need to detect this.
+    if depmode=$depmode \
+       source=sub/conftest.c object=sub/conftest.o \
+       depfile=sub/conftest.Po tmpdepfile=sub/conftest.TPo \
+       $SHELL $depcomp $depcc -c -o sub/conftest.o sub/conftest.c \
+         >/dev/null 2>conftest.err &&
+       grep sub/conftst1.h sub/conftest.Po > /dev/null 2>&1 &&
+       grep sub/conftst6.h sub/conftest.Po > /dev/null 2>&1 &&
+       grep sub/conftest.${OBJEXT-o} sub/conftest.Po > /dev/null 2>&1 &&
+       ${MAKE-make} -s -f confmf > /dev/null 2>&1
+    then
+       # icc doesn't choke on unknown options, it will just issue warnings
+       # or remarks (even with -Werror).  So we grep stderr for any message
+       # that says an option was ignored or not supported.
+       # When given -MP, icc 7.0 and 7.1 complain thusly:
+       #   icc: Command line warning: ignoring option '-M'; no argument required
+       # The diagnosis changed in icc 8.0:
+       #   icc: Command line remark: option '-MP' not supported
+       if (grep 'ignoring option' conftest.err ||
+          grep 'not supported' conftest.err) >/dev/null 2>&1
+       then :
+       else
+	  compiler_type=$depmode
+	  break
+       fi
+    fi
+done
+cd ..
+rm -rf conftest$$.dir
+
+echo "$varname = $compiler_type"
