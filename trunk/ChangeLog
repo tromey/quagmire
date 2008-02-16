@@ -1,5 +1,9 @@
 2008-02-16  Tom Tromey  <tromey@redhat.com>
 
+	* src/sharedlib.mk (all): Remove.
+
+2008-02-16  Tom Tromey  <tromey@redhat.com>
+
 	* src/compile.mk: Include defcompiler.mk.  Call
 	quagmire/defcompiler for CXX, if needed.
 	* src/post.mk: Don't include defcompiler.mk.
