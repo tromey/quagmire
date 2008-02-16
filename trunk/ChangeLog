@@ -1,5 +1,9 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/dist.mk: Removed some rules.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/post.mk: Include dist.mk.
 	* src/dist.mk: New file.
 
