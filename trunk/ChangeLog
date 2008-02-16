@@ -1,5 +1,9 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/pkgconfig.mk (.quagmire/pkg-config/results/$(1)): Fix typo.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/pkgconfig.mk (.quagmire/pkg-config/results/$(1)): Also emit
 	CXXFLAGS.
 

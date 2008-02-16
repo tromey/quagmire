@@ -36,7 +36,7 @@ define quagmire/package
 	@$$(PKG_CONFIG) --exists $$($(2))
 	@echo "$(1): CFLAGS += \\" > $$@
 	@$$(PKG_CONFIG) --cflags $$($(2)) >> $$@
-	@echo "$(1): CXXFLAGS += \\" > $$@
+	@echo "$(1): CXXFLAGS += \\" >> $$@
 	@$$(PKG_CONFIG) --cflags $$($(2)) >> $$@
 	@echo "$(1): $(1)_LIBS += \\" >> $$@
 	@$$(PKG_CONFIG) --libs $$($(2)) >> $$@
