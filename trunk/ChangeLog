@@ -1,5 +1,14 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/install.mk (quagmire/all-install-dirs): Add missing paren.
+	(install/$(1)): Depend on install directory.
+	(quagmire/all-install-dirs): Don't sort.
+	(quagmire/one-install-dir): New function.
+	* src/post.mk: Include install.mk.
+	installdirs: Rewrote.  Use quagmire/one-install-dir.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/tags.mk (clean/TAGS): New target.
 	(clean): Likewise.
 	(.PHONY): Likewise.

@@ -2,7 +2,7 @@
 
 To do:
 
-- distclean needs work
+x distclean needs work
   should remove Makefile, config.status, etc
 
 x need support for configure-generated files
