@@ -27,8 +27,6 @@ include $(quagmire_dir)/checkfunc.mk
 include $(quagmire_dir)/configh.mk
 include $(quagmire_dir)/sources.mk
 
-include $(quagmire_dir)/defcompiler.mk
-
 # Could be lazily included once.
 include $(quagmire_dir)/pkgconfig.mk
 include $(quagmire_dir)/install.mk

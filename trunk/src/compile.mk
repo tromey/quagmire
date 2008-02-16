@@ -2,6 +2,7 @@
 
 ifdef quagmire/all_sources
 
+include $(quagmire_dir)/defcompiler.mk
 include $(quagmire_dir)/deps.mk
 
 # C.
@@ -12,6 +13,8 @@ endif
 # C++.
 ifneq ($(filter %.cxx %.C %.cpp %.cc,$(quagmire/all_sources)),)
 include $(quagmire_dir)/lang-cxx.mk
+
+$(eval $(call quagmire/defcompiler,$(call quagmire/compiler-name,$(CXX)),$(CXX)))
 endif
 
 ifneq ($(filter %.cxx,$(quagmire/all_sources)),)
