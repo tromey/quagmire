@@ -58,10 +58,14 @@ x dependency tracking
 x clean
 x tags
 
-  make dist
+x make dist
+
+    Mostly works.  Much taken from Automake, though some things
+    dropped.
+
   make distcheck
 
-- make check
+x make check
 
     We have something very minimal here -- do it yourself
 
@@ -78,6 +82,8 @@ x tags
 == Automake features we (probably) *don't* want
 
 - ansi2knr
+
+- subdirs?  so far we don't have them
 
 - anything else?
 

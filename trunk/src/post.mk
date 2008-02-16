@@ -62,6 +62,7 @@ include $(quagmire_dir)/tags.mk
 include $(quagmire_dir)/data.mk
 
 include $(quagmire_dir)/help.mk
+include $(quagmire_dir)/dist.mk
 
 # Use sort to uniquify here.
 $(foreach _dir,$(sort $(quagmire/all-install-dirs)),$(eval $(call quagmire/one-install-dir,$(_dir))))
