@@ -8,10 +8,11 @@ all: quagmire/do-nothing
 install-exec: quagmire/do-nothing
 install-data: quagmire/do-nothing
 install: install-exec install-data | all
+installdirs: quagmire/do-nothing
 mostlyclean: quagmire/do-nothing
 clean: quagmire/do-nothing | mostlyclean
 distclean: quagmire/do-nothing | clean
-.PHONY: all install-exec install-data install mostlyclean clean distclean
+.PHONY: all install-exec install-data install mostlyclean clean distclean installdirs
 
 # Initial value.
 quagmire/all-install-dirs :=
@@ -27,6 +28,7 @@ include $(quagmire_dir)/defcompiler.mk
 
 # Could be lazily included once.
 include $(quagmire_dir)/pkgconfig.mk
+include $(quagmire_dir)/install.mk
 include $(quagmire_dir)/aggregate.mk
 
 ifdef PROGRAMS
@@ -59,9 +61,5 @@ include $(quagmire_dir)/data.mk
 
 include $(quagmire_dir)/help.mk
 
-installdirs:
-	@list='$(quagmire/all-install-dirs)'; \
-	for dir in $$list; do \
-	  mkdir $(DESTDIR)$$dir; \
-	done
-.PHONY: installdirs
+# Use sort to uniquify here.
+$(foreach _dir,$(sort $(quagmire/all-install-dirs)),$(eval $(call quagmire/one-install-dir,$(_dir))))
