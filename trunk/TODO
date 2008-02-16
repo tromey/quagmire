@@ -60,7 +60,11 @@ x tags
 
   make dist
   make distcheck
-  make check
+
+- make check
+
+    We have something very minimal here -- do it yourself
+
   info (& related targets: dvi, pdf, html, install-*)
   man & install-man (?)
 
