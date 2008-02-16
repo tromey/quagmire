@@ -60,6 +60,12 @@ include $(quagmire_dir)/compile.mk
 include $(quagmire_dir)/tags.mk
 include $(quagmire_dir)/data.mk
 
+# Install data.
+$(foreach _dir,$(DIRECTORY_VARIABLES),$(if $($(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA))))
+
+# Install scripts.
+$(foreach _dir,$(DIRECTORY_VARIABLES),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS))))
+
 include $(quagmire_dir)/help.mk
 include $(quagmire_dir)/dist.mk
 

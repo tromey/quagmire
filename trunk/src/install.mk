@@ -4,7 +4,6 @@
 INSTALL ?= install
 
 # quagmire/install aggregate-name
-# FIXME: need to run ranlib for archives, so need extra arg.
 define quagmire/install
 
 $(1)_INSTALLNAME ?= $(1)
