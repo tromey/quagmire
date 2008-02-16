@@ -20,6 +20,4 @@ $(1)_LINK ?= $$(LINK.c)
 $(1): $$($(1)_OBJECTS)
 	$$($(1)_LINK) $(LDFLAGS) -shared -o $$@ $$($(1)_OBJECTS) $$($(1)_LIBS)
 
-all: $(1)
-
 endef
