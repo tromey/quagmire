@@ -1,5 +1,16 @@
 2008-02-16  Tom Tromey  <tromey@redhat.com>
 
+	* src/compile.mk: Include defcompiler.mk.  Call
+	quagmire/defcompiler for CXX, if needed.
+	* src/post.mk: Don't include defcompiler.mk.
+	* src/lang-cxx.mk (quagmire/cxx-rules): Changed arguments.
+	Implement depmodes.
+	* src/lang-c.mk (%.o): Don't use OUTPUT_OPTION in gcc3 case.
+	* src/defcompiler.mk (quagmire/defcompiler): Only expand once per
+	compiler.
+
+2008-02-16  Tom Tromey  <tromey@redhat.com>
+
 	* src/install.mk ($$(DESTDIR)$(1)): Support DESTDIR.
 	(installdirs): Likewise.
 	* src/dist.mk (distcheck-hook): New target.

@@ -9,7 +9,7 @@
 define quagmire/lang-c-rule
 %.o: %.c | $(DEPDIR)
 ifeq ($(quagmire/depmode-$(1)),gcc3)
-	$$(COMPILE.c) -MT $$@ -MMD -MP -MF $$(DEPDIR)/$*.Po -c $$(OUTPUT_OPTION) $$<
+	$$(COMPILE.c) -MT $$@ -MMD -MP -MF $$(DEPDIR)/$*.Po -c -o $$@ $$<
 else
 	depmode=$(quagmire/depmode-$(1)) source="$$<" object="$$@" \
 	DEPDIR="$$(DEPDIR)" libtool=no \
