@@ -1,5 +1,13 @@
 2008-02-16  Tom Tromey  <tromey@redhat.com>
 
+	* src/post.mk: Install data, scripts.
+	* src/data.mk (install/data-dir-$(1)): Depend on data, install
+	dir.
+	(quagmire/all-install-dirs): Update.
+	(quagmire/data-directory): Add arguments.
+
+2008-02-16  Tom Tromey  <tromey@redhat.com>
+
 	* src/sharedlib.mk (all): Remove.
 
 2008-02-16  Tom Tromey  <tromey@redhat.com>
