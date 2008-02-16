@@ -66,18 +66,7 @@ quagmire/dist-zip: distdir
 	zip -rq $(distdir).zip $(distdir)
 .PHONY: quagmire/dist-zip
 
-# These are all user-visible.
-dist-gzip: DIST_FORMATS = gzip
-dist-gzip: dist-all
-dist-bzip2: DIST_FORMATS = bzip2
-dist-bzip2: dist-all
-dist-zip: DIST_FORMATS = zip
-dist-zip: dist-all
-
-dist: dist-all
-
-dist-all: $(addprefix quagmire/dist-,$(DIST_FORMATS))
+dist: $(addprefix quagmire/dist-,$(DIST_FORMATS))
 	$(if $(DIST_FORMATS),,$(error DIST_FORMATS is empty))
 	$(am__remove_distdir)
-
-.PHONY: dist-gzip dist-bzip2 dist-zip dist dist-all
+.PHONY: dist
