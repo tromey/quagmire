@@ -2,18 +2,8 @@
 
 To do:
 
-x distclean needs work
-  should remove Makefile, config.status, etc
-
-x need support for configure-generated files
-  should be automated like variables.in
-
-x program
-
-x shared lib
+- shared lib
     this needs porting, testing, and install fixes
-
-x static lib
 
 x pkgconfig
     should be easy to specify packages per aggregate
@@ -26,7 +16,7 @@ x pkgconfig
     expose .quagmire/ config targets as part of the API.  The latter
     may be nice for optional packages?
 
-  configure stuff
+- real configure stuff
     this is difficult because there are a lot of inter-dependencies
     for instance consider a common sequence of searching for a
     function in multiple libraries
@@ -34,8 +24,6 @@ x pkgconfig
     See the existing config.h support, which is currently pretty weak.
     For instance we can't search for a function in a library -- only
     in libc
-
-    Think about what to do for things like depcomp
 
   yacc/lex/c/c++/objc/asm/f77/f90
 
@@ -47,14 +35,19 @@ x pkgconfig
 x dependency tracking
 
     Ties into the language thing
+    Isn't implemented for C++
+    Probably no need for objc/gcj code (automake has it but it is
+    doubtful that it is used)
 
   cross compilation
 
     An aggregate could have a flag indicating if it is for the host,
-    target, or build machine... much nicer than auto*.
+    target, or build machine... much nicer than auto*.  Or could just
+    do it according to compiler choice -- very simple.
 
     Need to figure out where to put object files in these cases.
-    Maybe always put them in subdirs or the like.
+    Maybe always put them in subdirs or the like.  Or perhaps just
+    define the problem away and make the user cope?
 
   install scripts/data/headers
 
