@@ -1,5 +1,11 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/install.mk: Fix comment.
+	* src/staticlib.mk: Removed old-style comment.
+	($(1)): Create library with correct name.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/install.mk (INSTALL): Redefine.
 
 2008-02-15  Tom Tromey  <tromey@redhat.com>
