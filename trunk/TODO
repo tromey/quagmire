@@ -5,7 +5,7 @@ To do:
 - distclean needs work
   should remove Makefile, config.status, etc
 
-- need support for configure-generated files
+x need support for configure-generated files
   should be automated like variables.in
 
 x program
