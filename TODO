@@ -63,7 +63,9 @@ x make dist
     Mostly works.  Much taken from Automake, though some things
     dropped.
 
-  make distcheck
+x make distcheck
+
+    Took it from Automake, works ok-ish.  A couple of FIXMEs.
 
 x make check
 

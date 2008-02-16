@@ -1,3 +1,15 @@
+2008-02-16  Tom Tromey  <tromey@redhat.com>
+
+	* src/install.mk ($$(DESTDIR)$(1)): Support DESTDIR.
+	(installdirs): Likewise.
+	* src/dist.mk (distcheck-hook): New target.
+	(distcheck): Likewise.
+	(.PHONY): Update.
+	(distuninstallcheck_listfiles): New variable.
+	(distcleancheck_listfiles): Likewise.
+	(distcleancheck): New target.
+	(distuninstallcheck): Likewise.
+
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
 	* src/post.mk (installcheck): New target.

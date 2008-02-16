@@ -70,3 +70,73 @@ dist: $(addprefix quagmire/dist-,$(DIST_FORMATS))
 	$(if $(DIST_FORMATS),,$(error DIST_FORMATS is empty))
 	$(am__remove_distdir)
 .PHONY: dist
+
+
+distcheck-hook:
+.PHONY: distcheck-hook
+
+DISTCHECK_CONFIGURE_FLAGS ?=
+
+# FIXME: should 'make dvi' in the check.  should copy over commentary
+# from automake.
+# FIXME: support DIST_ARCHIVES stuff from automake as well
+distcheck:
+	$(MAKE) DIST_FORMATS=bzip2 dist
+	bunzip2 -c $(distdir).tar.bz2 | tar xf -
+	chmod -R a-w $(distdir); chmod a+w $(distdir)
+	mkdir $(distdir)/_build
+	mkdir $(distdir)/_inst
+	chmod a-w $(distdir)
+	dc_install_base=`cd $(distdir)/_inst && pwd | sed -e 's,^[^:\\/]:[\\/],/,'` \
+	  && dc_destdir="$${TMPDIR-/tmp}/am-dc-$$$$/" \
+	  && $(MAKE) distcheck-hook \
+	  && cd $(distdir)/_build \
+	  && ../configure --srcdir=.. --prefix="$$dc_install_base" \
+	    $(DISTCHECK_CONFIGURE_FLAGS) \
+	  && $(MAKE) \
+	  && $(MAKE) check \
+	  && $(MAKE) install \
+	  && $(MAKE) installcheck \
+	  && $(MAKE) uninstall \
+	  && $(MAKE) distuninstallcheck_dir="$$dc_install_base" \
+	        distuninstallcheck \
+	  && chmod -R a-w "$$dc_install_base" \
+	  && ({ \
+	       (cd ../.. && umask 077 && mkdir "$$dc_destdir") \
+	       && $(MAKE) DESTDIR="$$dc_destdir" install \
+	       && $(MAKE) DESTDIR="$$dc_destdir" uninstall \
+	       && $(MAKE) DESTDIR="$$dc_destdir" \
+	            distuninstallcheck_dir="$$dc_destdir" distuninstallcheck; \
+	      } || { rm -rf "$$dc_destdir"; exit 1; }) \
+	  && rm -rf "$$dc_destdir" \
+	  && $(MAKE) DIST_FORMATS=bzip2 dist \
+	  && rm -rf $(distdir).tar.bz2 \
+	  && $(MAKE) distcleancheck
+	$(am__remove_distdir)
+	@(echo "$(distdir).tar.bz2 archive ready for distribution"
+
+.PHONY: distcheck
+
+distuninstallcheck_listfiles = find . -type f -print
+distuninstallcheck:
+	@cd $(distuninstallcheck_dir) \
+	&& test `$(distuninstallcheck_listfiles) | wc -l` -le 1 \
+	   || { echo "ERROR: files left after uninstall:" ; \
+	        if test -n "$(DESTDIR)"; then \
+	          echo "  (check DESTDIR support)"; \
+	        fi ; \
+	        $(distuninstallcheck_listfiles) ; \
+	        exit 1; } >&2
+.PHONY: distuninstallcheck
+
+distcleancheck_listfiles = find . -type f -print
+distcleancheck: distclean
+	@if test '$(srcdir)' = . ; then \
+	  echo "ERROR: distcleancheck can only run from a VPATH build" ; \
+	  exit 1 ; \
+	fi
+	@test `$(distcleancheck_listfiles) | wc -l` -eq 0 \
+	  || { echo "ERROR: files left in build directory after distclean:" ; \
+	       $(distcleancheck_listfiles) ; \
+	       exit 1; } >&2
+.PHONY: distcleancheck
