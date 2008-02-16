@@ -55,8 +55,7 @@ PROGRAMS - a list of the names of programs
 
   _PACKAGES.  The value is a package specification to be passed to
   pkg-config.  Using this automatically adds the appropriate values to
-  _CFLAGS and _LIBS for this target (no way to work with CXXFLAGS -- a
-  bug)
+  _CFLAGS, _CXXFLAGS, and _LIBS for this target
 
 LIBRARIES
 

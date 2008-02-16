@@ -1,5 +1,10 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/pkgconfig.mk (.quagmire/pkg-config/results/$(1)): Also emit
+	CXXFLAGS.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/post.mk (check): New target.
 	(.PHONY): Update.
 	* src/aggregate.mk: Don't put uninstalled objects on 'all'.
