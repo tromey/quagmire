@@ -13,7 +13,7 @@ fi
 quagmire_dir='$(abs_srcdir)'/$quagmire_dir
 AC_SUBST(quagmire_dir)
 
-# Ugly hack relying on autoconf internals.  Note that we do this here
+# Ugly hacks relying on autoconf internals.  Note that we do this here
 # because the commands for AC_CONFIG_FILES are run after the file is
 # built.  This isn't ideal but there doesn't seem to be a better way.
 test -d .quagmire || mkdir .quagmire
@@ -35,4 +35,9 @@ done
 echo
 echo 'include $(quagmire_dir)/base.mk') > .quagmire/variables.in
 
-AC_CONFIG_FILES([Makefile:.quagmire/variables.in:])])
+AC_CONFIG_COMMANDS_PRE([
+  quagmire_config_files=$ac_config_files
+  AC_SUBST(quagmire_config_files)
+])
+
+AC_CONFIG_FILES([Makefile:.quagmire/variables.in])])
