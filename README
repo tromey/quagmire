@@ -46,7 +46,9 @@ PROGRAMS - a list of the names of programs
   _CONFIG_HEADERS the config.h headers used by this program
 
   _INSTALLDIR the install directory for the program.  There is no
-  default
+  default.  If _INSTALLDIR is defined, then the object is built by
+  'make all'.  Otherwise, it is not, and you must provide a dependency
+  on the program in order for it to be built at all.
 
   _INSTALLNAME the name of the program when it is installed.  The
   default is the name of the program as it is built.
