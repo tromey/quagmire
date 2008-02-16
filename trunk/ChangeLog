@@ -1,5 +1,9 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/install.mk (INSTALL): Redefine.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/install.mk (quagmire/all-install-dirs): Add missing paren.
 	(install/$(1)): Depend on install directory.
 	(quagmire/all-install-dirs): Don't sort.
