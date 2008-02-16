@@ -1,8 +1,12 @@
 # Print help for users.
 
 # As we add targets, update help.
-# FIXME: allow user-defined help as well.  What is a good way?
-help:
+help: help-post-hook
+
+# User can define commands for this to print things.
+help-post-hook: quagmire-help
+
+quagmire-help: help-pre-hook
 	@echo "Targets supported by all quagmire-based builds:"
 	@echo "   all            Build everything [default]"
 	@echo "   install        Copy deliverables to install tree"
@@ -17,4 +21,7 @@ help:
 	@echo "   dist           Make distribution tar"
 	@echo "   distcheck      Make distribution tar and run consistency checks"
 
-.PHONY: help
+# User can define commands for this to print things.
+help-pre-hook:
+
+.PHONY: help help-post-hook help-pre-hook quagmire-help

@@ -1,5 +1,13 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/help.mk (help): Depend on help-post-hook.
+	(help-post-hook): New target.
+	(quagmire-help): Likewise.
+	(help-pre-hook): Likewise.
+	(.PHONY): Update.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/configuration.mk: Add distclean targets.
 
 2008-02-15  Tom Tromey  <tromey@redhat.com>
