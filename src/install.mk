@@ -1,7 +1,7 @@
 # install.mk - Install something.
 
-# FIXME.
-INSTALL ?= /usr/bin/install
+# FIXME -- maybe path_prog equivalent here?
+INSTALL ?= install
 
 # aggregate-name
 # FIXME: need to run ranlib for archives, so need extra arg.
