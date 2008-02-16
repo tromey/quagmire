@@ -28,9 +28,9 @@ endef
 # Make a single install directory.
 define quagmire/one-install-dir
 
-$(1):
-	mkdir -p $(1)
+$$(DESTDIR)$(1):
+	mkdir -p $$@
 
-installdirs: $(1)
+installdirs: $$(DESTDIR)$(1)
 
 endef
