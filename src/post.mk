@@ -44,6 +44,11 @@ include $(quagmire_dir)/sharedlib.mk
 $(foreach _lib,$(SHARED_LIBRARIES),$(eval $(call quagmire/sharedlibrary,$(_lib))))
 endif
 
+# No point in doing this conditionally since we will always have at
+# least one.
+include $(quagmire_dir)/configuration.mk
+$(foreach _file,$(quagmire_config_files),$(eval $(call quagmire/config.status,$(subst :, ,$(_file)))))
+
 # ifdef CONFIG_HEADERS
 # $(foreach _doth,$(CONFIG_HEADERS),$(eval $(call quagmire/config.h,$(_doth))))
 # endif

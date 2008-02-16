@@ -1,5 +1,12 @@
 2008-02-15  Tom Tromey  <tromey@redhat.com>
 
+	* src/post.mk: Include configuration.mk.  Handle
+	quagmire_config_files.
+	* src/configuration.mk: Rewrote.
+	* m4/quagmire.m4 (AM_QUAGMIRE): Subst quagmire_config_files.
+
+2008-02-15  Tom Tromey  <tromey@redhat.com>
+
 	* src/lang-c.mk (%.o): Call compiler-name.
 	(quagmire/lang-c-rule): New function.
 	* src/defcompiler.mk (quagmire/compiler-name): New function.
