@@ -60,11 +60,14 @@ include $(quagmire_dir)/compile.mk
 include $(quagmire_dir)/tags.mk
 include $(quagmire_dir)/data.mk
 
+# Directory variables are those ending in 'dir'.
+quagmire/dir-vars := $(filter %dir,$(.VARIABLES))
+
 # Install data.
-$(foreach _dir,$(DIRECTORY_VARIABLES),$(if $($(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA))))
+$(foreach _dir,$(quagmire/dir-vars),$(if $($(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA))))
 
 # Install scripts.
-$(foreach _dir,$(DIRECTORY_VARIABLES),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS))))
+$(foreach _dir,$(quagmire/dir-vars),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS))))
 
 include $(quagmire_dir)/help.mk
 include $(quagmire_dir)/dist.mk

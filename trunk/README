@@ -84,18 +84,16 @@ Currently a config header has a single sub-variable:
   _FUNCTIONS list of functions to check for.  A link test is done and
   the config header will define HAVE_FUNCTION if function is found.
 
-DIRECTORY_VARIABLES
+DATA and SCRIPTS
 
-  This is a list of variable names.  Each variable holds a directory.
-  Currently these can be used as prefixes for _DATA to install data
-  into a given directory.  For instance, to install 'file' into
-  $(datadir):
+  _DATA and _SCRIPTS are treated similarly to automake.  They can be
+  prefixed by any directory variable name.  A directory variable is
+  any variable whose name ends in "dir".
 
-      DIRECTORY_VARIABLES = datadir
+  Unlike automake the "dir" should not be stripped first.
+
       datadir_DATA = file
-
-  This can also be used to install scripts, with _SCRIPTS instead of
-  _DATA.
+      bindir_SCRIPTS = sh-script
 
 Features of automake that are handled:
   'clean' family of targets
