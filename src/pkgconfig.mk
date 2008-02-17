@@ -1,7 +1,9 @@
-# Handle pkg-config.
+# pkgconfig.mk - Handle pkg-config.
 
+# The user can set this via configure.
 PKG_CONFIG ?= pkg-config
 
+# Minimum required version; the user can set this as needed.
 PKG_CONFIG_MIN_VERSION ?= 0.9.0
 
 .quagmire/pkg-config: | .quagmire
@@ -12,7 +14,6 @@ PKG_CONFIG_MIN_VERSION ?= 0.9.0
 .quagmire/pkg-config/results: | .quagmire/pkg-config
 	@mkdir $@
 
-# FIXME: verbosity level here...
 # FIXME: should depend on tool path
 .quagmire/pkg-config/min-version: | .quagmire/pkg-config
 	@if $(PKG_CONFIG) --atleast-pkgconfig-version $(PKG_CONFIG_MIN_VERSION); then \
@@ -24,6 +25,9 @@ PKG_CONFIG_MIN_VERSION ?= 0.9.0
 	fi
 
 # Usage: quagmire/package TARGET SPECVAR
+# TARGET is the target for which we are computing the information.
+# SPECVAR is the name of the variable holding the pkg-config
+# specification.
 # FIXME: case where TARGET is in a subdir...
 define quagmire/package
 
@@ -31,9 +35,16 @@ define quagmire/package
 # weird.  We should let the user unify these somehow, perhaps by
 # treating packages as their own entities.
 
-# FIXME: print something here?
 .quagmire/pkg-config/results/$(1): .quagmire/pkg-config/min-version | .quagmire/pkg-config/results
-	@$$(PKG_CONFIG) --exists $$($(2))
+ifeq ($(findstring s,$(MAKEFLAGS)),)
+	@echo -n "Checking pkg-config $$($(2))..."
+endif
+	@if $$(PKG_CONFIG) --exists $$($(2)); then \
+	  $(if $(findstring s,$(MAKEFLAGS)),true,echo " found"); \
+	else \
+	  $(if $(findstring s,$(MAKEFLAGS)),:,echo " not found"); \
+	  false; \
+	fi
 	@echo "$(1): CFLAGS += \\" > $$@
 	@$$(PKG_CONFIG) --cflags $$($(2)) >> $$@
 	@echo "$(1): CXXFLAGS += \\" >> $$@

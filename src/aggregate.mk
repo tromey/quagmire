@@ -1,5 +1,10 @@
 # aggregate.mk - Build something requiring object files.
 
+# quagmire/aggregate NAME
+# NAME is the name of an aggregate object.
+# This function updates the list of sources, arranges for the
+# aggregate's objects to be built, and for the aggregate itself to be
+# installed.
 define quagmire/aggregate
 
 # Objects we automatically derive from sources.

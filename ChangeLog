@@ -1,5 +1,13 @@
 2008-02-17  Tom Tromey  <tromey@redhat.com>
 
+	* src/data.mk, src/configh.mk, src/sources.mk, src/once.mk,
+	src/post.mk, src/aggregate.mk, src/sharedlib.mk, src/program.mk:
+	Comment updates.
+	* src/pkgconfig.mk (.quagmire/pkg-config/results/$(1)): Print
+	results.
+
+2008-02-17  Tom Tromey  <tromey@redhat.com>
+
 	* src/post.mk (quagmire/dir-vars): New variable.  Don't use
 	DIRECTORY_VARIABLES.
 
