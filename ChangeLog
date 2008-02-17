@@ -1,3 +1,8 @@
+2008-02-17  Tom Tromey  <tromey@redhat.com>
+
+	* src/post.mk (quagmire/dir-vars): New variable.  Don't use
+	DIRECTORY_VARIABLES.
+
 2008-02-16  Tom Tromey  <tromey@redhat.com>
 
 	* src/post.mk: Install data, scripts.
