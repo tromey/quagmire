@@ -1,12 +1,10 @@
 # configh.mk - Rule for a config.h.
 
-# @deffn quagmire/config.h header
-# Note that dependencies for the config header must be defined
-# elsewhere.
-# @var{header}_FUNCTIONS
-# @var{header}_DECLS
-# @end defun
+# quagmire/config.h HEADER
+# Define a rule to create the config.h-style header named HEADER.
+# This is made by searching for a series of functions.
 define quagmire/config.h
+
 # FIXME: need to depend on the list of functions as well.
 $(1): $$(foreach _fn,$$($(1)_FUNCTIONS),$$(call quagmire/checkfunc,$$(_fn)))
 ifeq (,$(findstring s,$(MAKEFLAGS)))
@@ -21,4 +19,5 @@ distclean/$(1):
 	rm -f $(1)
 .PHONY: distclean/$(1)
 distclean: distclean/$(1)
+
 endef

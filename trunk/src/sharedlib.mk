@@ -1,5 +1,7 @@
 # sharedlib.mk - Build a shared library.
 
+# quagmire/sharedlibrary NAME
+# Define a shared library named NAME.
 define quagmire/sharedlibrary
 $(if $(1)_SOURCES,,$(error Library $(1) specified but $(1)_SOURCES not defined))
 

@@ -1,9 +1,12 @@
 # post.mk - Include after user code.
 
-# The base of the standard rules.
+# The base of the standard targets.
 quagmire/do-nothing: ; @true
 .PHONY: quagmire/do-nothing
 
+# The standard user-visible targets.  Note that we don't want to
+# supply rules for these directly; we want to let the user supply his
+# own as needed.
 all: quagmire/do-nothing
 install-exec: quagmire/do-nothing
 install-data: quagmire/do-nothing
@@ -17,7 +20,8 @@ installcheck: quagmire/do-nothing
 .PHONY: all install-exec install-data install mostlyclean clean \
 	distclean installdirs check installcheck
 
-# Initial value.
+# This tracks all the directories into which we may install an object.
+# This is used for 'installdirs'.
 quagmire/all-install-dirs :=
 
 include $(quagmire_dir)/once.mk
@@ -48,7 +52,7 @@ $(foreach _lib,$(SHARED_LIBRARIES),$(eval $(call quagmire/sharedlibrary,$(_lib))
 endif
 
 # No point in doing this conditionally since we will always have at
-# least one.
+# least one: the Makefile.
 include $(quagmire_dir)/configuration.mk
 $(foreach _file,$(quagmire_config_files),$(eval $(call quagmire/config.status,$(subst :, ,$(_file)))))
 
@@ -72,5 +76,6 @@ $(foreach _dir,$(quagmire/dir-vars),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmi
 include $(quagmire_dir)/help.mk
 include $(quagmire_dir)/dist.mk
 
-# Use sort to uniquify here.
+# Create targets that make install directories.  We use sort to
+# uniquify the list.
 $(foreach _dir,$(sort $(quagmire/all-install-dirs)),$(eval $(call quagmire/one-install-dir,$(_dir))))

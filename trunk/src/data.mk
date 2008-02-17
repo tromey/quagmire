@@ -10,9 +10,6 @@ define quagmire/data-directory
 
 all: $$($(1)_$(3))
 
-# FIXME: the echo is old-style ... need to deal with the verbosity
-# thing.  Unlike automake we don't use a leading space, since that
-# looks weird with the other for loops.
 install/$(2)-dir-$(1): $$($(1)_$(3)) | $$(DESTDIR)$$($(1))
 	@list='$$($(1)_$(3))'; \
 	for f in $$$$list; do \
@@ -21,7 +18,6 @@ install/$(2)-dir-$(1): $$($(1)_$(3)) | $$(DESTDIR)$$($(1))
 	done
 install-$(2): install/$(2)-dir-$(1)
 
-# FIXME: the echo again
 uninstall/$(2)-dir-$(1):
 	@list='$$($(1)_$(3))'; \
 	for f in $$$$list; do \
