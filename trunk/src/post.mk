@@ -20,6 +20,25 @@ installcheck: quagmire/do-nothing
 .PHONY: all install-exec install-data install mostlyclean clean \
 	distclean installdirs check installcheck
 
+# Documentation rules.
+info: quagmire/do-nothing
+dvi: quagmire/do-nothing
+ps: quagmire/do-nothing
+pdf: quagmire/do-nothing
+html: quagmire/do-nothing
+all: info
+
+install-info: quagmire/do-nothing
+install-dvi: quagmire/do-nothing
+install-ps: quagmire/do-nothing
+install-pdf: quagmire/do-nothing
+install-html: quagmire/do-nothing
+install-data: install-info
+
+.PHONY: info dvi ps pdf html \
+	install-info install-dvi install-ps install-pdf install-html
+
+
 # This tracks all the directories into which we may install an object.
 # This is used for 'installdirs'.
 quagmire/all-install-dirs :=
@@ -62,6 +81,9 @@ $(foreach _file,$(quagmire_config_files),$(eval $(call quagmire/config.status,$(
 include $(quagmire_dir)/compile.mk
 include $(quagmire_dir)/tags.mk
 include $(quagmire_dir)/data.mk
+
+# This must come before the data installation code.
+include $(quagmire_dir)/texi.mk
 
 # Directory variables are those ending in 'dir'.
 quagmire/dir-vars := $(filter %dir,$(.VARIABLES))
