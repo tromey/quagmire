@@ -1,5 +1,10 @@
 2008-02-18  Tom Tromey  <tromey@redhat.com>
 
+	* src/texi.mk: New file.
+	* src/post.mk: Include texi.mk.
+
+2008-02-18  Tom Tromey  <tromey@redhat.com>
+
 	* src/checkheader.mk (.quagmire/header/%-frag): Handle a header	in
 	a subdirectory.
 	(.quagmire/header/%.c): Likewise.

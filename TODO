@@ -72,6 +72,10 @@ x make check
     We have something very minimal here -- do it yourself
 
   info (& related targets: dvi, pdf, html, install-*)
+
+    partly done, but some install targets not written, .ps/.html not
+    done
+
   man & install-man (?)
 
     Use the automake implementations, more or less
