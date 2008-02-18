@@ -79,10 +79,19 @@ SHARED_LIBRARIES
   _CONFIG_HEADERS, _INSTALLDIR, _INSTALLNAME, _LINK, _PACKAGES
 
 A config header is built up by running tests, like autoconf
-Currently a config header has a single sub-variable:
+Currently a config header has two defined sub-variables:
 
-  _FUNCTIONS list of functions to check for.  A link test is done and
+  _FUNCTIONS: list of functions to check for.  A link test is done and
   the config header will define HAVE_FUNCTION if function is found.
+
+  _HEADERS: list of headers to check for.  A compile test is done and
+  the config header will define HAVE_FILE_H if the header is found.
+
+  Example:
+
+      program_CONFIG_HEADERS = config.h
+      config.h_FUNCTIONS = strcmp strdup
+      config.h_HEADERS = string.h sys/types.h
 
 DATA and SCRIPTS
 
