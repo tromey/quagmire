@@ -1,5 +1,13 @@
 2008-02-17  Tom Tromey  <tromey@redhat.com>
 
+	* src/checkfunc.mk (.quagmire/function/%-frag): Don't append to
+	log file.
+	* src/post.mk: Include checkheader.mk.
+	* src/configh.mk (quagmire/config.h): Handle headers.
+	* src/checkheader.mk: New file.
+
+2008-02-17  Tom Tromey  <tromey@redhat.com>
+
 	* src/util.mk (quagmire/move-if-change): New function.
 	* src/post.mk: Remove old comment.
 	* src/configh.mk (quagmire/cfgh-header): New variable.

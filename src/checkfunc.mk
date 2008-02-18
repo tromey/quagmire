@@ -8,7 +8,7 @@ ifeq (,$(findstring s,$(MAKEFLAGS)))
 	@echo -n "Checking for function $(*F)... "
 endif
 	@upper=`echo '$(*F)' | tr a-z A-Z`; \
-	if $(CC) $(CFLAGS) $(CPPFLAGS) $< -o .quagmire/function/$(*F).exe >> .quagmire/function/$(*F).log 2>&1; then \
+	if $(CC) $(CFLAGS) $(CPPFLAGS) $< -o .quagmire/function/$(*F).exe > .quagmire/function/$(*F).log 2>&1; then \
 	  result="#define HAVE_$$upper 1"; msg=found; \
 	  rm .quagmire/function/$(*F).log; \
 	else \

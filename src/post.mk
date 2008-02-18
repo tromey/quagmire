@@ -30,6 +30,7 @@ include $(quagmire_dir)/once.mk
 include $(quagmire_dir)/checks.mk
 # Could be include-once...?
 include $(quagmire_dir)/checkfunc.mk
+include $(quagmire_dir)/checkheader.mk
 include $(quagmire_dir)/configh.mk
 include $(quagmire_dir)/sources.mk
 
