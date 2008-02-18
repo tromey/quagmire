@@ -49,7 +49,7 @@ x dependency tracking
     Maybe always put them in subdirs or the like.  Or perhaps just
     define the problem away and make the user cope?
 
-  install scripts/data/headers
+x install scripts/data/headers
 
     We want to group things by install dir and permissions.
     We could have a variable whose value is a list of variable names,

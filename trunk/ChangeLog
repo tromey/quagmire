@@ -1,3 +1,9 @@
+2008-02-18  Tom Tromey  <tromey@redhat.com>
+
+	* src/checkheader.mk (.quagmire/header/%-frag): Handle a header	in
+	a subdirectory.
+	(.quagmire/header/%.c): Likewise.
+
 2008-02-17  Tom Tromey  <tromey@redhat.com>
 
 	* src/checkfunc.mk (.quagmire/function/%-frag): Don't append to
