@@ -1,5 +1,14 @@
 2008-02-17  Tom Tromey  <tromey@redhat.com>
 
+	* src/util.mk (quagmire/move-if-change): New function.
+	* src/post.mk: Remove old comment.
+	* src/configh.mk (quagmire/cfgh-header): New variable.
+	(quagmire/cfgh-stamp): Likewise.
+	($$(quagmire/cfgh-stamp)): New target.
+	($(1)): Depend on stamp file.
+
+2008-02-17  Tom Tromey  <tromey@redhat.com>
+
 	* src/pkgconfig.mk (quagmire/pkg-file-name): New variable.
 	($(quagmire/pkg-file-name)): Rename.
 	(.quagmire/pkg-config/results/$(1)): Use pkg-file-name.

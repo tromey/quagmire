@@ -58,10 +58,6 @@ endif
 include $(quagmire_dir)/configuration.mk
 $(foreach _file,$(quagmire_config_files),$(eval $(call quagmire/config.status,$(subst :, ,$(_file)))))
 
-# ifdef CONFIG_HEADERS
-# $(foreach _doth,$(CONFIG_HEADERS),$(eval $(call quagmire/config.h,$(_doth))))
-# endif
-
 include $(quagmire_dir)/compile.mk
 include $(quagmire_dir)/tags.mk
 include $(quagmire_dir)/data.mk

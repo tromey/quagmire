@@ -103,3 +103,7 @@ or maybe an md5 or url-encoding primitive
 
 Better syntax would make it nicer to let users use functions instead of
 the current approach.
+
+right now 'make clean' will happily re-run pkg-config
+I think perhaps this is solvable using secondary expansion and $(eval)?
+...but it would be a *lot* simpler with a gnu make extension
