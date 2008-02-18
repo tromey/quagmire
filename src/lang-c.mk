@@ -23,5 +23,5 @@ CPPFLAGS ?= -I.
 
 # We have to ensure that the depcomp variable is set before we can
 # expand the %.o rule.
-$(eval $(call quagmire/defcompiler,$(call quagmire/compiler-name,$(CC)),$(CC)))
-$(eval $(call quagmire/lang-c-rule,$(call quagmire/compiler-name,$(CC))))
+$(eval $(call quagmire/defcompiler,$(call quagmire/tool-name,$(CC)),$(CC)))
+$(eval $(call quagmire/lang-c-rule,$(call quagmire/tool-name,$(CC))))
