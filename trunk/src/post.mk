@@ -24,6 +24,8 @@ installcheck: quagmire/do-nothing
 # This is used for 'installdirs'.
 quagmire/all-install-dirs :=
 
+include $(quagmire_dir)/util.mk
+
 include $(quagmire_dir)/once.mk
 include $(quagmire_dir)/checks.mk
 # Could be include-once...?

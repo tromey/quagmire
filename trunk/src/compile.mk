@@ -14,7 +14,7 @@ endif
 ifneq ($(filter %.cxx %.C %.cpp %.cc,$(quagmire/all_sources)),)
 include $(quagmire_dir)/lang-cxx.mk
 
-$(eval $(call quagmire/defcompiler,$(call quagmire/compiler-name,$(CXX)),$(CXX)))
+$(eval $(call quagmire/defcompiler,$(call quagmire/tool-name,$(CXX)),$(CXX)))
 endif
 
 ifneq ($(filter %.cxx,$(quagmire/all_sources)),)

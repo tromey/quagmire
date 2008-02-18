@@ -99,6 +99,7 @@ gnu make doesn't have a nice way to find a .mk on a path
 
 see checkfunc.mk -- would be nice to have a built-in 'tr' function
 perhaps a builtin regsub too, for depcomp stuff
+or maybe an md5 or url-encoding primitive
 
 Better syntax would make it nicer to let users use functions instead of
 the current approach.

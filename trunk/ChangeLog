@@ -1,5 +1,19 @@
 2008-02-17  Tom Tromey  <tromey@redhat.com>
 
+	* src/pkgconfig.mk (quagmire/pkg-file-name): New variable.
+	($(quagmire/pkg-file-name)): Rename.
+	(.quagmire/pkg-config/results/$(1)): Use pkg-file-name.
+	(quagmire/package): Handle situation where target is in subdir.
+	Remove 'clean' targets.  Depend on contents of package
+	specification.
+	* src/post.mk: Include util.mk.
+	* src/lang-c.mk: Use quagmire/tool-name.
+	* src/compile.mk: Use quagmire/tool-name.
+	* src/defcompiler.mk (quagmire/compiler-name): Remove.
+	* src/util.mk: New file.
+
+2008-02-17  Tom Tromey  <tromey@redhat.com>
+
 	* src/data.mk, src/configh.mk, src/sources.mk, src/once.mk,
 	src/post.mk, src/aggregate.mk, src/sharedlib.mk, src/program.mk:
 	Comment updates.

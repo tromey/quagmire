@@ -1,14 +1,9 @@
 # defcompiler.mk - Define compiler configury.
 
-# quagmire/compiler-name CC
-# Given a compiler (e.g., $(CC)), munge the value to be
-# file-system-safe and still try to avoid possible conflicts.
-quagmire/compiler-name = $(subst /,@_,$(subst @,@@,$(firstword $(1))))
-
 # quagmire/defcompiler NAME CC
 # Define a rule to compute the dependency mode for a compiler.
 # CC is the compiler.
-# NAME is the result of calling quagmire/compiler-name on the compiler.
+# NAME is the result of calling quagmire/tool-name on the compiler.
 define quagmire/defcompiler
 
 # Only do this once per compiler.

@@ -14,8 +14,12 @@ PKG_CONFIG_MIN_VERSION ?= 0.9.0
 .quagmire/pkg-config/results: | .quagmire/pkg-config
 	@mkdir $@
 
-# FIXME: should depend on tool path
-.quagmire/pkg-config/min-version: | .quagmire/pkg-config
+# Name of the pkg-config minimum version results file.  We pick a
+# funny name here so that we depend on the tool's path.
+quagmire/pkg-file-name := \
+    .quagmire/pkg-config/min-version-$(call quagmire/tool-name,$(PKG_CONFIG))
+
+$(quagmire/pkg-file-name): | .quagmire/pkg-config
 	@if $(PKG_CONFIG) --atleast-pkgconfig-version $(PKG_CONFIG_MIN_VERSION); then \
 	  echo ok > $@; \
 	else \
@@ -28,14 +32,28 @@ PKG_CONFIG_MIN_VERSION ?= 0.9.0
 # TARGET is the target for which we are computing the information.
 # SPECVAR is the name of the variable holding the pkg-config
 # specification.
-# FIXME: case where TARGET is in a subdir...
 define quagmire/package
 
 # Note that we don't share results across targets... but that is
 # weird.  We should let the user unify these somehow, perhaps by
 # treating packages as their own entities.
 
-.quagmire/pkg-config/results/$(1): .quagmire/pkg-config/min-version | .quagmire/pkg-config/results
+# Some convenience variables for the body of this function.
+override quagmire/pkg-name1 := $(call quagmire/tool-name,$(1))
+override quagmire/pkg-name2 := $(call quagmire/value-name,$($(2)))
+override quagmire/pkg-stamp := \
+	.quagmire/pkg-config/results/stamp-$$(quagmire/pkg-name1)-$$(quagmire/pkg-name2)
+override quagmire/pkg-output := \
+	.quagmire/pkg-config/results/output-$$(quagmire/pkg-name1)
+
+# This makes sure that we re-run pkg-config when the specification
+# changes.  We put both the target name and the spec var's contents
+# into the name of the file.
+$$(quagmire/pkg-stamp): | .quagmire/pkg-config/results
+	@echo ok > $$@
+
+# Depend on the stamp- file so that we re-run this whenever needed.
+$$(quagmire/pkg-output): $$(quagmire/pkg-file-name) $$(quagmire/pkg-stamp)
 ifeq ($(findstring s,$(MAKEFLAGS)),)
 	@echo -n "Checking pkg-config $$($(2))..."
 endif
@@ -52,14 +70,6 @@ endif
 	@echo "$(1): $(1)_LIBS += \\" >> $$@
 	@$$(PKG_CONFIG) --libs $$($(2)) >> $$@
 
-$(1): | .quagmire/pkg-config/results/$(1)
-
--include .quagmire/pkg-config/results/$(1)
-
-# FIXME: namespace.  not just here but all clean targets.
-mostlyclean/pkg-config-$(1):
-	@rm -f .quagmire/pkg-config/results/$(1)
-.PHONY: mostlyclean/pkg-config-$(1)
-mostlyclean: mostlyclean/pkg-config-$(1)
+-include $$(quagmire/pkg-output)
 
 endef
