@@ -118,3 +118,5 @@ Features we can have that are hard to do in automake:
   A verbose setting for builds
   We could echo "linux kernel"-like output: "CC foo.c" ...
   by having a variable set on the command line to choose output style
+  ... we already do something here; if you use 'make -s' you will see
+  much less output than what automake generates

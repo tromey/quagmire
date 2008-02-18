@@ -1,5 +1,9 @@
 2008-02-18  Tom Tromey  <tromey@redhat.com>
 
+	* example: New directory.
+
+2008-02-18  Tom Tromey  <tromey@redhat.com>
+
 	* src/lang-c.mk (quagmire/lang-c-rule): Fix typo in .Po file
 	name.
 
