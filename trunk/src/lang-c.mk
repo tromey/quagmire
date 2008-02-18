@@ -1,6 +1,5 @@
 # lang-c.mk - Compile a C source file.
 
-# FIXME: other depmodes
 # FIXME: static patterns and renaming?
 # FIXME: needs secondary expansion
 
