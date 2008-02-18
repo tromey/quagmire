@@ -29,3 +29,5 @@ changes.
 Try 'make -s' and see how it is much quieter than automake.  Quagmire
 does have some rules that, like automake, use a loop and 'echo' the
 commands -- but quagmire adapts to -s at runtime.
+
+Try 'make help'
