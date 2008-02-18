@@ -1,0 +1,4 @@
+AC_INIT(ekeyring, 1.5.1)
+AC_CONFIG_SRCDIR(ekeyring.c)
+AM_QUAGMIRE
+AC_OUTPUT

@@ -1,0 +1,31 @@
+This is a very simple example of using Quagmire.
+
+To try it:
+
+cd <here>
+ln -s ../../src quagmire
+./configure --prefix=/somewhere-you-like
+make
+
+
+A few things to note or play with:
+
+The build description is in the file Quagmire.  The 'quagmire' link
+you made is where the boilerplate and whatnot is found.
+
+Try changing the list of functions or headers for config.h.  Adding an
+item will cause a new check to be run -- for the new item only.
+Removing an item will still rebuild config.h (i.e., config.h depends
+on the contents of the list).
+
+... the config.h stuff is not fully baked in that you can't do
+everything here that autoconf can do.  However, for some simple cases
+it should suffice.
+
+Play with the _PACKAGES setting to see how you can use pkg-config.
+Quagmire only re-runs these commands when the package specification
+changes.
+
+Try 'make -s' and see how it is much quieter than automake.  Quagmire
+does have some rules that, like automake, use a loop and 'echo' the
+commands -- but quagmire adapts to -s at runtime.
