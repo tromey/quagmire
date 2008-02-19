@@ -94,6 +94,7 @@ distcheck:
 	  && ../configure --srcdir=.. --prefix="$$dc_install_base" \
 	    $(DISTCHECK_CONFIGURE_FLAGS) \
 	  && $(MAKE) \
+	  && $(MAKE) dvi \
 	  && $(MAKE) check \
 	  && $(MAKE) install \
 	  && $(MAKE) installcheck \

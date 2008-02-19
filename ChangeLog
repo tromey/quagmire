@@ -1,5 +1,9 @@
 2008-02-18  Tom Tromey  <tromey@redhat.com>
 
+	* src/dist.mk (distcheck): Make 'dvi'.
+
+2008-02-18  Tom Tromey  <tromey@redhat.com>
+
 	* example: New directory.
 
 2008-02-18  Tom Tromey  <tromey@redhat.com>
