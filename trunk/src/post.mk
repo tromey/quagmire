@@ -39,6 +39,54 @@ install-data: install-info
 	install-info install-dvi install-ps install-pdf install-html
 
 
+# Directory variables are those ending in 'dir', but not srcdir or
+# builddir.
+quagmire/dir-vars := $(filter-out %srcdir %builddir,$(filter %dir,$(.VARIABLES)))
+
+# Directory prefixes are directory variables with the 'dir' stripped
+# off.
+quagmire/dir-prefixes := $(patsubst %dir,%,$(quagmire/dir-vars))
+
+ifdef checkdir
+$(error Do not define variable named "checkdir")
+endif
+ifdef noinstdir
+$(error Do not define variable named "noinstdir")
+endif
+
+# We map each directory prefix to either 'data' or 'exec', so we can
+# easily decide which install sub-target will install objects in this
+# directory.  For standard directories, we simply hard-code the
+# answer.  For user directories, we use the "exec" substring, as
+# Automake does.  We also map non-installing prefixes to 'none'.
+quagmire/instpfx-bin := exec
+quagmire/instpfx-data := data
+quagmire/instpfx-dataroot := data
+quagmire/instpfx-doc := data
+quagmire/instpfx-dvi := data
+quagmire/instpfx-html := data
+quagmire/instpfx-include := data
+quagmire/instpfx-info := data
+quagmire/instpfx-lib := exec
+quagmire/instpfx-libexec := exec
+quagmire/instpfx-locale := data
+quagmire/instpfx-localstate := data
+quagmire/instpfx-man := data
+quagmire/instpfx-oldinclude := data
+quagmire/instpfx-pdf := data
+quagmire/instpfx-ps := data
+quagmire/instpfx-sbin := exec
+quagmire/instpfx-sharedstate := data
+quagmire/instpfx-sysconf := exec
+
+# Non-installing fake names.
+quagmire/instpfx-check := none
+quagmire/instpfx-noinst := none
+
+# Compute the remaining install values.
+$(foreach _pfx,$(quagmire/dir-prefixes),$(if $(quagmire/instpfx-$(_pfx)),,$(eval quagmire/instpfx-$(_pfx) := $(if $(findstring exec,$(_pfx)),exec,data))))
+
+
 # This tracks all the directories into which we may install an object.
 # This is used for 'installdirs'.
 quagmire/all-install-dirs :=
@@ -58,20 +106,18 @@ include $(quagmire_dir)/pkgconfig.mk
 include $(quagmire_dir)/install.mk
 include $(quagmire_dir)/aggregate.mk
 
-ifdef PROGRAMS
-include $(quagmire_dir)/program.mk
-$(foreach _prog,$(PROGRAMS),$(eval $(call quagmire/program,$(_prog))))
-endif
+# Programs.
+include $(quagmire_dir)/program.mk  # FIXME lazily include once
+$(foreach _pfx,$(quagmire/dir-prefixes),$(eval $(call quagmire/apply-aggregate,$(_pfx),PROGRAMS,quagmire/program)))
 
-ifdef LIBRARIES
-include $(quagmire_dir)/staticlib.mk
-$(foreach _lib,$(LIBRARIES),$(eval $(call quagmire/library,$(_lib))))
-endif
+# Static libraries.
+include $(quagmire_dir)/staticlib.mk  # FIXME lazily include once
+$(foreach _pfx,$(quagmire/dir-prefixes),$(eval $(call quagmire/apply-aggregate,$(_pfx),LIBRARIES,quagmire/library)))
 
-ifdef SHARED_LIBRARIES
-include $(quagmire_dir)/sharedlib.mk
-$(foreach _lib,$(SHARED_LIBRARIES),$(eval $(call quagmire/sharedlibrary,$(_lib))))
-endif
+# Shared libraries.
+include $(quagmire_dir)/sharedlib.mk  # FIXME lazily include once
+$(foreach _pfx,$(quagmire/dir-prefixes),$(eval $(call quagmire/apply-aggregate,$(_pfx),SHARED_LIBRARIES,quagmire/sharedlibrary)))
+
 
 # No point in doing this conditionally since we will always have at
 # least one: the Makefile.
@@ -85,14 +131,11 @@ include $(quagmire_dir)/data.mk
 # This must come before the data installation code.
 include $(quagmire_dir)/texi.mk
 
-# Directory variables are those ending in 'dir'.
-quagmire/dir-vars := $(filter %dir,$(.VARIABLES))
-
 # Install data.
-$(foreach _dir,$(quagmire/dir-vars),$(if $($(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA))))
+$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA))))
 
 # Install scripts.
-$(foreach _dir,$(quagmire/dir-vars),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS))))
+$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS))))
 
 include $(quagmire_dir)/help.mk
 include $(quagmire_dir)/dist.mk

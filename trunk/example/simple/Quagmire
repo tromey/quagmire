@@ -1,22 +1,20 @@
 # -*- makefile-gmake -*-
 
-PROGRAMS = ekeyring
+bin_PROGRAMS = ekeyring
 
-LIBRARIES = libzardoz.a
+lib_LIBRARIES = libzardoz.a
 
 libzardoz.a_SOURCES = zardoz.c
-libzardoz.a_INSTALLDIR = $(libdir)
 
 ekeyring_SOURCES = ekeyring.c something.h
 ekeyring_PACKAGES = gnome-keyring-1
-ekeyring_INSTALLDIR = $(bindir)
 ekeyring_CONFIG_HEADERS = config.h
 
 config.h_FUNCTIONS = strcmp strdup
 config.h_HEADERS = string.h nothing.h strings.h sys/types.h
 
-datadir_SCRIPTS = ekeyring.c
-datadir_DATA = something.h
+data_SCRIPTS = ekeyring.c
+data_DATA = something.h
 
 #ekeyring_LIBS = `pkg-config --libs gnome-keyring-1`
 #ekeyring: CFLAGS += `pkg-config --cflags gnome-keyring-1`

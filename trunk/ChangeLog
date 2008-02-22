@@ -1,3 +1,20 @@
+2008-02-21  Tom Tromey  <tromey@redhat.com>
+
+	* example/simple/Quagmire: Update for 'primary' changes.
+	* src/program.mk (quagmire/program): Add second argument.
+	* src/sharedlib.mk (quagmire/sharedlibrary): Add second argument.
+	* src/staticlib.mk (quagmire/library): Add second argument.
+	* src/install.mk (quagmire/install): Add second argument.  Don't
+	use _INSTALLDIR.
+	* src/aggregate.mk (quagmire/apply-aggregate): New function.
+	(quagmire/aggregate): Add 'dir' argument.  Update 'all'
+	dependency.  Update install rule.
+	* src/data.mk (quagmire/data-directory): Add 'dir' as needed.
+	* src/post.mk (quagmire/dir-vars): Move earlier.
+	(quagmire/dir-prefixes): New variable.
+	Update calls to quagmire/data-directory.
+	Change instantiation of program and library targets.
+
 2008-02-18  Tom Tromey  <tromey@redhat.com>
 
 	* src/dist.mk (distcheck): Make 'dvi'.

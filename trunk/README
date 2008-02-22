@@ -22,9 +22,15 @@ an aggregate.  In Quagmire, you would instead use a target-specific
 CFLAGS assignment.
 
 
-Currently defined variables:
+Like Automake, Quagmire uses "primaries" with prefixes indicating
+install directories.  An install directory variable is any variable
+ending in "dir"; the standard ones are all pre-defined.  The primary's
+prefix is the name without the "dir", e.g. for $(bindir) use 'bin'.
+The special prefixes check and noinst are recognized.
 
-PROGRAMS - a list of the names of programs
+Currently handled primaries:
+
+_PROGRAMS - a list of the names of programs
   Each program can have several attributes.
   The attributes of a program are specified in variables named
   after the program.  Unlike automake, the given name of the program
@@ -45,11 +51,6 @@ PROGRAMS - a list of the names of programs
 
   _CONFIG_HEADERS the config.h headers used by this program
 
-  _INSTALLDIR the install directory for the program.  There is no
-  default.  If _INSTALLDIR is defined, then the object is built by
-  'make all'.  Otherwise, it is not, and you must provide a dependency
-  on the program in order for it to be built at all.
-
   _INSTALLNAME the name of the program when it is installed.  The
   default is the name of the program as it is built.
 
@@ -57,7 +58,7 @@ PROGRAMS - a list of the names of programs
   pkg-config.  Using this automatically adds the appropriate values to
   _CFLAGS, _CXXFLAGS, and _LIBS for this target
 
-LIBRARIES
+_LIBRARIES
 
   Static libraries, used like PROGRAMS.
 
@@ -65,9 +66,9 @@ LIBRARIES
 
   A library is similar to a program in some ways.  Derived variables
   which are the same: _OBJECTS, _EXTRA_OBJECTS, _CONFIG_HEADERS,
-  _INSTALLDIR, _INSTALLNAME, _PACKAGES
+  _INSTALLNAME, _PACKAGES
 
-SHARED_LIBRARIES
+_SHARED_LIBRARIES
 
   Also similar to PROGRAMS.
 
@@ -76,7 +77,7 @@ SHARED_LIBRARIES
   library, confusion may result.  (This needs a real fix)
 
   Derived variables which are the same: _OBJECTS, _EXTRA_OBJECTS,
-  _CONFIG_HEADERS, _INSTALLDIR, _INSTALLNAME, _LINK, _PACKAGES
+  _CONFIG_HEADERS, _INSTALLNAME, _LINK, _PACKAGES
 
 A config header is built up by running tests, like autoconf
 Currently a config header has two defined sub-variables:
@@ -93,16 +94,13 @@ Currently a config header has two defined sub-variables:
       config.h_FUNCTIONS = strcmp strdup
       config.h_HEADERS = string.h sys/types.h
 
-DATA and SCRIPTS
+_DATA and _SCRIPTS
 
-  _DATA and _SCRIPTS are treated similarly to automake.  They can be
-  prefixed by any directory variable name.  A directory variable is
-  any variable whose name ends in "dir".
+  Install data or scripts.  There is no difference right now; this is
+  a bug in that scripts should be made executable when installed.
 
-  Unlike automake the "dir" should not be stripped first.
-
-      datadir_DATA = file
-      bindir_SCRIPTS = sh-script
+      data_DATA = file
+      bin_SCRIPTS = sh-script
 
 Features of automake that are handled:
   'clean' family of targets

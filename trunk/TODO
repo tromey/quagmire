@@ -2,6 +2,9 @@
 
 To do:
 
+- program
+    needs EXEEXT
+
 - shared lib
     this needs porting, testing, and install fixes
 
@@ -25,6 +28,10 @@ x pkgconfig
     For instance we can't search for a function in a library -- only
     in libc
 
+    could use special syntax for this maybe
+    or do library tests first, then function tests using the found
+    libraries.
+
   yacc/lex/c/c++/objc/asm/f77/f90
 
     Ideally we would have better support for adding on a new language
@@ -35,9 +42,24 @@ x pkgconfig
 x dependency tracking
 
     Ties into the language thing
-    Isn't implemented for C++
     Probably no need for objc/gcj code (automake has it but it is
-    doubtful that it is used)
+    doubtful that it is used -- can just assume gcc3)
+
+  renamed object files
+
+    how to handle things like a source in both a .a and .so?
+    automake does all this renaming stuff
+    one idea is to let the user specify a rename function
+    it would compute the .o name
+    we could even do fun things like rename the '%.c' in a static
+    pattern rule
+
+    a different idea is to support special syntax in _SOURCES.
+    eg prog_SOURCES = output.o:input.c
+
+    maybe language support is somehow related to this
+    have a function that expands to a rule as needed
+    then pass it `%.o,%.c', or whatever
 
   cross compilation
 
@@ -54,6 +76,9 @@ x install scripts/data/headers
     We want to group things by install dir and permissions.
     We could have a variable whose value is a list of variable names,
     but that seems ugly.  What else?
+
+    we should find a faster way of installing than execing install
+    once per file.  automake uses this approach and it scales poorly
 
 x clean
 x tags
