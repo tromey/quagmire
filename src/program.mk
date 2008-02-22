@@ -1,12 +1,13 @@
 # program.mk - Build a single program.
 
-# quagmire/program NAME
+# quagmire/program NAME DIRNAME
 # Define a program named NAME.
+# DIRNAME is the base of the install directory, e.g. "bin" or "check".
 define quagmire/program
 # FIXME: consider checking existence, not empty-ness
 $(if $($(1)_SOURCES),,$(error Program $(1) specified but $(1)_SOURCES not defined))
 
-$(call quagmire/aggregate,$(1))
+$(call quagmire/aggregate,$(1),$(2))
 
 # How to link this program.
 # FIXME: try to compute it more intelligently?

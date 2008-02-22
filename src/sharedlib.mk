@@ -1,11 +1,11 @@
 # sharedlib.mk - Build a shared library.
 
-# quagmire/sharedlibrary NAME
+# quagmire/sharedlibrary NAME DIRNAME
 # Define a shared library named NAME.
 define quagmire/sharedlibrary
 $(if $(1)_SOURCES,,$(error Library $(1) specified but $(1)_SOURCES not defined))
 
-$(call quagmire/aggregate,$(1))
+$(call quagmire/aggregate,$(1),$(2))
 
 # FIXME: configury checks.
 # FIXME: name of the library itself?

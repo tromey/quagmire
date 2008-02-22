@@ -1,7 +1,8 @@
 # aggregate.mk - Build something requiring object files.
 
-# quagmire/aggregate NAME
+# quagmire/aggregate NAME DIR
 # NAME is the name of an aggregate object.
+# DIR is the install directory base name, e.g. "bin" or "check".
 # This function updates the list of sources, arranges for the
 # aggregate's objects to be built, and for the aggregate itself to be
 # installed.
@@ -28,20 +29,20 @@ quagmire/all_sources += $(call quagmire/filter-ignorable,$$($(1)_SOURCES))
 # headers.
 $(if $($(1)_CONFIG_HEADERS),$$($(1)_OBJECTS): | $($(1)_CONFIG_HEADERS))
 
-# If the aggregate has an install directory, build it with 'all'.
-# Otherwise, don't build it, and assume that if it is needed,
-# something will depend on it.  This lets us handle 'make check'
-# nicely as well.
-
-ifdef $(1)_INSTALLDIR
+# Most aggregates are built by all, except when 'check' prefix is
+# used.
+ifneq ($(2),check)
 # Normal case.
 all: $(1)
-
-# Install the program if necessary.
-$(if $($(1)_INSTALLDIR),$(call quagmire/install,$(1)))
-
+else
+# Only build for make check.
+check: $(1)
 endif
 
+# Install the program if necessary.
+ifneq ($(quagmire/instpfx-$(2)),none)
+$(call quagmire/install,$(1),$(2))
+endif
 
 # Remove the program on 'mostlyclean'.
 mostlyclean/$(1):
@@ -49,4 +50,14 @@ mostlyclean/$(1):
 .PHONY: mostlyclean/$(1)
 mostlyclean: mostlyclean/$(1)
 
+endef
+
+
+# quagmire/apply-aggregate FILE BASE SUBR
+# Apply a subroutine to each aggregate in a list.
+# BASE is the install directory basename, e.g. "bin".
+# PRIMARY is the primary to look at.
+# SUBR is the function to apply to each aggregate.
+define quagmire/apply-aggregate
+$(foreach _aggr,$($(1)_$(2)),$(call $(3),$(_aggr),$(1)))
 endef
