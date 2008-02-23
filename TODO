@@ -4,11 +4,22 @@ To do:
 
 - program
     needs EXEEXT
+    OBJEXT -- or do we care?
+    program prefix stuff from configure
 
 - shared lib
     this needs porting, testing, and install fixes
 
 x pkgconfig
+    two bugs here:
+    - make clean will re-build stuff first.  not sure how to fix this.
+      I think it requires a gnu make extension
+      MAKECMDGOALS does the wrong thing if the user runs 'make clean all'
+    - each make will re-build the stamp file
+      we might be able to fix this by persisting variables to an
+      included .mk file.  then a difference from the persisted copy
+      would trigger a rebuild  .. ?
+
     should be easy to specify packages per aggregate
     something like:
 
@@ -31,6 +42,8 @@ x pkgconfig
     could use special syntax for this maybe
     or do library tests first, then function tests using the found
     libraries.
+
+    handling libobjs ought to be pretty easy
 
   yacc/lex/c/c++/objc/asm/f77/f90
 
@@ -108,6 +121,13 @@ x make check
   id?  gnu global?  lisp?  java?
   gettext
 
+
+  we only required make 3.81 due to $(or)
+  maybe we could relax this
+  we could test a new automatic variable, like .VARIABLES, to see if
+  we're using 3.80 (.FEATURES was added in 3.81)
+  this probably doesn't matter since 3.81 was released in early 2006
+
 ================================================================
 ==
 == Automake features we (probably) *don't* want
@@ -134,5 +154,3 @@ Better syntax would make it nicer to let users use functions instead of
 the current approach.
 
 right now 'make clean' will happily re-run pkg-config
-I think perhaps this is solvable using secondary expansion and $(eval)?
-...but it would be a *lot* simpler with a gnu make extension
