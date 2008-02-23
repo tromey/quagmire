@@ -1,3 +1,7 @@
+2008-02-23  Tom Tromey  <tromey@redhat.com>
+
+	* src/base.mk: Require GNU make 3.81.
+
 2008-02-21  Tom Tromey  <tromey@redhat.com>
 
 	* example/simple/Quagmire: Update for 'primary' changes.
