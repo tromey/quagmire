@@ -1,3 +1,16 @@
+2008-02-24  Tom Tromey  <tromey@redhat.com>
+
+	* src/pkgconfig.mk (quagmire/package): Add 'suffix' argument.
+	* src/post.mk (OBJEXT): Define.
+	(EXEEXT): Define.
+	* src/sources.mk (quagmire/source2obj): Use OBJEXT.
+	* src/lang-cxx.mk (quagmire/cxx-rules): Use OBJEXT.
+	* src/lang-c.mk (quagmire/lang-c-rule): Use OBJEXT.
+	* src/compile.mk: Use OBJEXT.
+	* src/checkheader.mk (.quagmire/header/%-frag): Use OBJEXT.
+	* src/aggregate.mk (quagmire/aggregate): Add 'suffix' argument.
+	* src/program.mk (quagmire/program): Use EXEEXT.
+
 2008-02-23  Tom Tromey  <tromey@redhat.com>
 
 	* src/base.mk: Require GNU make 3.81.

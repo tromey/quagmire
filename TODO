@@ -3,8 +3,6 @@
 To do:
 
 - program
-    needs EXEEXT
-    OBJEXT -- or do we care?
     program prefix stuff from configure
 
 - shared lib
@@ -154,3 +152,6 @@ Better syntax would make it nicer to let users use functions instead of
 the current approach.
 
 right now 'make clean' will happily re-run pkg-config
+
+functions sure would be clearer and easier to modify with named
+arguments.

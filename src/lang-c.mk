@@ -6,7 +6,7 @@
 # quagmire/lang-c-rule NAME
 # NAME is the munged name of the compiler
 define quagmire/lang-c-rule
-%.o: %.c | $(DEPDIR)
+%.$(OBJEXT): %.c | $(DEPDIR)
 ifeq ($(quagmire/depmode-$(1)),gcc3)
 	$$(COMPILE.c) -MT $$@ -MMD -MP -MF $$(DEPDIR)/$$*.Po -c -o $$@ $$<
 else

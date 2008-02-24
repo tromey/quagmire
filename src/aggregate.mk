@@ -1,8 +1,9 @@
 # aggregate.mk - Build something requiring object files.
 
-# quagmire/aggregate NAME DIR
+# quagmire/aggregate NAME DIR [SUFFIX]
 # NAME is the name of an aggregate object.
 # DIR is the install directory base name, e.g. "bin" or "check".
+# SUFFIX is an optional argument that appended to the aggregate's name.
 # This function updates the list of sources, arranges for the
 # aggregate's objects to be built, and for the aggregate itself to be
 # installed.
@@ -18,7 +19,7 @@ $(1)_OBJECTS := $$($(1)_BASE_OBJECTS) $$($(1)_EXTRA_OBJECTS)
 $(foreach _doth,$($(1)_CONFIG_HEADERS),$(call quagmire/expand-once,header-$(_doth),$(call quagmire/config.h,$(_doth))))
 
 # Look for package requirements.
-$(if $($(1)_PACKAGES),$(call quagmire/package,$(1),$(1)_PACKAGES))
+$(if $($(1)_PACKAGES),$(call quagmire/package,$(1),$(1)_PACKAGES,$(3)))
 
 # Add the sources to the list of all sources.  This is used to
 # determine which language rules must be made available.
@@ -33,10 +34,10 @@ $(if $($(1)_CONFIG_HEADERS),$$($(1)_OBJECTS): | $($(1)_CONFIG_HEADERS))
 # used.
 ifneq ($(2),check)
 # Normal case.
-all: $(1)
+all: $(1)$(3)
 else
 # Only build for make check.
-check: $(1)
+check: $(1)$(3)
 endif
 
 # Install the program if necessary.
@@ -46,7 +47,7 @@ endif
 
 # Remove the program on 'mostlyclean'.
 mostlyclean/$(1):
-	rm -f $(1) $$($(1)_OBJECTS)
+	rm -f $(1)$(3) $$($(1)_OBJECTS)
 .PHONY: mostlyclean/$(1)
 mostlyclean: mostlyclean/$(1)
 

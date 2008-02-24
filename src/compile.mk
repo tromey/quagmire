@@ -37,6 +37,6 @@ endif
 
 
 # Include dependency files.
--include $(patsubst %.o,$(DEPDIR)/%.Po,$(call quagmire/source2obj,$(quagmire/all_sources)))
+-include $(patsubst %.$(OBJEXT),$(DEPDIR)/%.Po,$(call quagmire/source2obj,$(quagmire/all_sources)))
 
 endif

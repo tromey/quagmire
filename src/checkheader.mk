@@ -8,13 +8,13 @@ ifeq (,$(findstring s,$(MAKEFLAGS)))
 	@echo -n "Checking for header $*... "
 endif
 	@upper=`echo '$*' | tr a-z./ A-Z__`; \
-	if $(CC) $(CFLAGS) $(CPPFLAGS) $< -c -o .quagmire/header/$*.o > .quagmire/header/$*.log 2>&1; then \
+	if $(CC) $(CFLAGS) $(CPPFLAGS) $< -c -o .quagmire/header/$*.$(OBJEXT) > .quagmire/header/$*.log 2>&1; then \
 	  result="#define HAVE_$$upper 1"; msg=found; \
 	  rm .quagmire/header/$*.log; \
 	else \
 	  result="#undef HAVE_$$upper"; msg="not found"; \
 	fi; \
-	rm -f .quagmire/header/$*.o 2> /dev/null; \
+	rm -f .quagmire/header/$*.$(OBJEXT) 2> /dev/null; \
 	echo $$result > $@; \
 	$(if $(findstring s,$(MAKEFLAGS)),true,echo $$msg)
 

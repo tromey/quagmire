@@ -91,6 +91,10 @@ $(foreach _pfx,$(quagmire/dir-prefixes),$(if $(quagmire/instpfx-$(_pfx)),,$(eval
 # This is used for 'installdirs'.
 quagmire/all-install-dirs :=
 
+
+OBJEXT ?= o
+EXEEXT ?=
+
 include $(quagmire_dir)/util.mk
 
 include $(quagmire_dir)/once.mk
