@@ -9,14 +9,6 @@ To do:
     this needs porting, testing, and install fixes
 
 x pkgconfig
-    two bugs here:
-    - make clean will re-build stuff first.  not sure how to fix this.
-      I think it requires a gnu make extension
-      MAKECMDGOALS does the wrong thing if the user runs 'make clean all'
-    - each make will re-build the stamp file
-      we might be able to fix this by persisting variables to an
-      included .mk file.  then a difference from the persisted copy
-      would trigger a rebuild  .. ?
 
     should be easy to specify packages per aggregate
     something like:
