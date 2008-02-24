@@ -72,6 +72,16 @@ endif
 	@echo "$(1)$(3): $(1)_LIBS += \\" >> $$@
 	@$$(PKG_CONFIG) --libs $$($(2)) >> $$@
 
--include $$(quagmire/pkg-output)
+# Ensure that pkg-config is run, then include the result.  Note that
+# we have to hand-expand the output name in the body here.
+$$(quagmire/pkg-output)-incl: $$(quagmire/pkg-output)
+	@true $$(eval include .quagmire/pkg-config/results/output-$(call quagmire/tool-name,$(1)))
+
+# .PHONY: $$(quagmire/pkg-output)-incl
+
+# The objects corresponding to the target, and the target, pre-depend
+# on the pkg-config results.
+$$($(1)_OBJECTS): | $$(quagmire/pkg-output)-incl
+$(1): | $$(quagmire/pkg-output)-incl
 
 endef
