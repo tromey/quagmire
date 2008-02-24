@@ -1,5 +1,9 @@
 2008-02-24  Tom Tromey  <tromey@redhat.com>
 
+	* src/post.mk (check): Depend on 'all'.
+
+2008-02-24  Tom Tromey  <tromey@redhat.com>
+
 	* src/pkgconfig.mk (quagmire/package): Add 'suffix' argument.
 	* src/post.mk (OBJEXT): Define.
 	(EXEEXT): Define.

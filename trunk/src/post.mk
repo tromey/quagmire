@@ -15,7 +15,7 @@ installdirs: quagmire/do-nothing
 mostlyclean: quagmire/do-nothing
 clean: quagmire/do-nothing | mostlyclean
 distclean: quagmire/do-nothing | clean
-check: quagmire/do-nothing
+check: all
 installcheck: quagmire/do-nothing
 .PHONY: all install-exec install-data install mostlyclean clean \
 	distclean installdirs check installcheck
