@@ -3,16 +3,17 @@
 # FIXME -- maybe path_prog equivalent here?
 INSTALL ?= install
 
-# quagmire/install AGGREGATE-NAME DIR-NAME
+# quagmire/install AGGREGATE-NAME DIR-NAME [SUFFIX]
+# FIXME -- need program transform too ... ?
 define quagmire/install
 
 $(1)_INSTALLNAME ?= $(1)
 
 install/$(1): $(1) | $$(DESTDIR)$$($(2)dir)
-	$$(INSTALL) $(1) $$(DESTDIR)$$($(2)dir)/$$($(1)_INSTALLNAME)
+	$$(INSTALL) $(1) $$(DESTDIR)$$($(2)dir)/$$($(1)_INSTALLNAME)$(3)
 
 uninstall/$(1):
-	-rm -f $$(DESTDIR)$$($(2)dir)/$$($(1)_INSTALLNAME)
+	-rm -f $$(DESTDIR)$$($(2)dir)/$$($(1)_INSTALLNAME)$(3)
 
 .PHONY: install/$(1) uninstall/$(1)
 install-exec: install/$(1)

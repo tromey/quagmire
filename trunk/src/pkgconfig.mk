@@ -28,10 +28,12 @@ $(quagmire/pkg-file-name): | .quagmire/pkg-config
 	  exit 1; \
 	fi
 
-# Usage: quagmire/package TARGET SPECVAR
+# Usage: quagmire/package TARGET SPECVAR [SUFFIX]
 # TARGET is the target for which we are computing the information.
 # SPECVAR is the name of the variable holding the pkg-config
 # specification.
+# SUFFIX is an optional suffix to append to TARGET to get the real
+# name of the target.
 define quagmire/package
 
 # Note that we don't share results across targets... but that is
@@ -63,11 +65,11 @@ endif
 	  $(if $(findstring s,$(MAKEFLAGS)),:,echo " not found"); \
 	  false; \
 	fi
-	@echo "$(1): CFLAGS += \\" > $$@
+	@echo "$(1)$(3): CFLAGS += \\" > $$@
 	@$$(PKG_CONFIG) --cflags $$($(2)) >> $$@
-	@echo "$(1): CXXFLAGS += \\" >> $$@
+	@echo "$(1)$(3): CXXFLAGS += \\" >> $$@
 	@$$(PKG_CONFIG) --cflags $$($(2)) >> $$@
-	@echo "$(1): $(1)_LIBS += \\" >> $$@
+	@echo "$(1)$(3): $(1)_LIBS += \\" >> $$@
 	@$$(PKG_CONFIG) --libs $$($(2)) >> $$@
 
 -include $$(quagmire/pkg-output)

@@ -5,7 +5,7 @@
 # EXTENSION is the C++ file extension (no dot).
 define quagmire/cxx-rules
 
-%.o: %.$(2) | $(DEPDIR)
+%.$(OBJEXT): %.$(2) | $(DEPDIR)
 ifeq ($(quagmire/depmode-$(1)),gcc3)
 	$(COMPILE.cc) -MT $$@ -MMD -MP -MF $(DEPDIR)/$$*.Po -c -o $$@ $$<
 else
