@@ -39,6 +39,11 @@ x pkgconfig
     some variables per language or per-lang-and-per-platform (for
     shared libraries)
 
+    right now we redefine our own pattern rules
+    if we don't need special stuff (static patterns) then we should
+    not do this, if possible
+
+
 x dependency tracking
 
     Ties into the language thing
@@ -56,6 +61,9 @@ x dependency tracking
 
     a different idea is to support special syntax in _SOURCES.
     eg prog_SOURCES = output.o:input.c
+    ...and then add a special case for the static/shared thing,
+    like a new "this aggregate should build with an object filename
+    prefix" flag or something
 
     maybe language support is somehow related to this
     have a function that expands to a rule as needed
@@ -140,7 +148,9 @@ or maybe an md5 or url-encoding primitive
 Better syntax would make it nicer to let users use functions instead of
 the current approach.
 
-right now 'make clean' will happily re-run pkg-config
-
 functions sure would be clearer and easier to modify with named
 arguments.
+
+persisting variables would make it simpler to do some config.h things
+for instance I think that would make it so we don't re-run the stamp
+file rule each build
