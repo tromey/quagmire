@@ -2,9 +2,6 @@
 
 To do:
 
-- program
-    program prefix stuff from configure
-
 - shared lib
     this needs porting, testing, and install fixes
 

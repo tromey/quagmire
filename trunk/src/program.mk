@@ -7,7 +7,7 @@ define quagmire/program
 # FIXME: consider checking existence, not empty-ness
 $(if $($(1)_SOURCES),,$(error Program $(1) specified but $(1)_SOURCES not defined))
 
-$(call quagmire/aggregate,$(1),$(2),$(EXEEXT))
+$(call quagmire/aggregate,$(1),$(2),$(EXEEXT),yes)
 
 # How to link this program.
 # FIXME: try to compute it more intelligently?
