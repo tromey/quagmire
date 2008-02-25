@@ -1,3 +1,13 @@
+2008-02-25  Tom Tromey  <tromey@redhat.com>
+
+	* example/simple/configure: Rebuilt.
+	* example/simple/configure.ac: Use AC_ARG_PROGRAM.
+	* src/install.mk (quagmire/install): Add 'transform' argument.
+	Update install rules.
+	* src/program.mk: Update call to quagmire/aggregate.
+	* src/aggregate.mk (quagmire/aggregate): Add 'transform'
+	argument.
+
 2008-02-24  Tom Tromey  <tromey@redhat.com>
 
 	* src/pkgconfig.mk (quagmire/package): Only re-run pkg-config when

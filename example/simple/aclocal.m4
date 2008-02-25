@@ -11,4 +11,4 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-m4_include([../trunk/m4/quagmire.m4])
+m4_include([../../m4/quagmire.m4])

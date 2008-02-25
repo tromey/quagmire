@@ -1,9 +1,11 @@
 # aggregate.mk - Build something requiring object files.
 
-# quagmire/aggregate NAME DIR [SUFFIX]
+# quagmire/aggregate NAME DIR [SUFFIX] [TRANSFORM]
 # NAME is the name of an aggregate object.
 # DIR is the install directory base name, e.g. "bin" or "check".
 # SUFFIX is an optional argument that appended to the aggregate's name.
+# TRANSFORM is an optional argument; if non-empty means to apply
+# program name transform at install time.
 # This function updates the list of sources, arranges for the
 # aggregate's objects to be built, and for the aggregate itself to be
 # installed.
@@ -42,7 +44,7 @@ endif
 
 # Install the program if necessary.
 ifneq ($(quagmire/instpfx-$(2)),none)
-$(call quagmire/install,$(1),$(2))
+$(call quagmire/install,$(1),$(2),$(3),$(4))
 endif
 
 # Remove the program on 'mostlyclean'.
