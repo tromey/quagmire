@@ -1,3 +1,7 @@
+2008-03-26  Tom Tromey  <tromey@redhat.com>
+
+	* src/staticlib.mk ($(1)): Don't echo when -s given.
+
 2008-03-20  Paolo Bonzini  <bonzini@gnu.org>
 
 	* m4/quagmire.m4: Use m4 conditionals.

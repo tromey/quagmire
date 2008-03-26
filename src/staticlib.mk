@@ -15,7 +15,7 @@ ifneq ($$($(1)_LIBS),)
 	@for i in $$($(1)_LIBS); do \
 	  dir=`basename $$$${i}x` && \
 	  rm -rf $$$${dir} && \
-	  echo "mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i" && \
+	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i") && \
 	  mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i; \
 	done
 endif
