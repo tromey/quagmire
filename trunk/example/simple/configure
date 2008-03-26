@@ -1636,12 +1636,7 @@ program_transform_name=`echo $program_transform_name | sed -f conftest.sed`
 rm -f conftest.sed
 
 
-if test -n ""; then
-  quagmire_dir=""
-else
-  quagmire_dir=quagmire
-fi
-quagmire_dir='$(abs_srcdir)'/$quagmire_dir
+quagmire_dir='$(abs_srcdir)'/quagmire
 
 
 # Ugly hacks relying on autoconf internals.  Note that we do this here

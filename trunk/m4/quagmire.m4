@@ -5,12 +5,7 @@
 # DIR is the directory of the quagmire .mk files, relative to $srcdir.
 # Defaults to quagmire.
 AC_DEFUN([AM_QUAGMIRE],[
-if test -n "$1"; then
-  quagmire_dir="$1"
-else
-  quagmire_dir=quagmire
-fi
-quagmire_dir='$(abs_srcdir)'/$quagmire_dir
+quagmire_dir='$(abs_srcdir)'/m4_default([$1], [quagmire])
 AC_SUBST(quagmire_dir)
 
 # Ugly hacks relying on autoconf internals.  Note that we do this here
