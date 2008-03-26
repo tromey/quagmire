@@ -1,3 +1,8 @@
+2008-03-26  Paolo Bonzini  <bonzini@gnu.org>
+
+	* src/staticlib.mk ($(1)): Support dependent libraries
+	like libtool's convenience libraries.
+
 2008-02-25  Tom Tromey  <tromey@redhat.com>
 
 	* example/simple/configure: Rebuilt.
