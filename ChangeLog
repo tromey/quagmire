@@ -1,3 +1,8 @@
+2008-03-20  Paolo Bonzini  <bonzini@gnu.org>
+
+	* m4/quagmire.m4: Use m4 conditionals.
+	* example/simple/configure: Regenerate.
+
 2008-03-26  Paolo Bonzini  <bonzini@gnu.org>
 
 	* src/staticlib.mk ($(1)): Support dependent libraries
