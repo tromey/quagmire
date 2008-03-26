@@ -10,9 +10,19 @@ $(if $(1)_SOURCES,,$(error Library $(1) specified but $(1)_SOURCES not defined))
 $(call quagmire/aggregate,$(1),$(2))
 
 # The rule to build the library.
-$(1): $$($(1)_OBJECTS)
-	$(ARCHIVE) $$@ $$($(1)_OBJECTS)
-
+$(1): $$($(1)_OBJECTS) $$($(1)_LIBS)
+ifneq ($$($(1)_LIBS),)
+	@for i in $$($(1)_LIBS); do \
+	  dir=`basename $$$${i}x` && \
+	  rm -rf $$$${dir} && \
+	  echo "mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i" && \
+	  mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i; \
+	done
+endif
+	$(ARCHIVE) $$@ $$(patsubst %.a, %.ax/*, $$(notdir $$($(1)_LIBS))) $$($(1)_OBJECTS)
+ifneq ($$($(1)_LIBS),)
+	rm -rf $$(patsubst %.a, %.ax/*, $$(notdir $$($(1)_LIBS)))
+endif
 endef
 
 AR ?= ar
