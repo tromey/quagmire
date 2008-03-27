@@ -1,3 +1,8 @@
+2008-03-27  Tom Tromey  <tromey@redhat.com>
+
+	* src/dist.mk (quagmire/dist-files): Use quagmire_relative.
+	* m4/quagmire.m4 (AM_QUAGMIRE): Subst quagmire_relative.
+
 2008-03-26  Tom Tromey  <tromey@redhat.com>
 
 	* src/staticlib.mk ($(1)): Don't echo when -s given.

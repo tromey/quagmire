@@ -10,8 +10,8 @@ DIST_FORMATS ?= bzip2
 # The wildcard here is quite bogus.
 quagmire/dist-files = Quagmire configure.ac configure \
 	$(wildcard $(srcdir)/*.m4) \
-	$(wildcard $(srcdir)/quagmire/*.mk) \
-	$(wildcard $(srcdir)/quagmire/*depcomp)
+	$(wildcard $(srcdir)/$(quagmire_relative)/*.mk) \
+	$(wildcard $(srcdir)/$(quagmire_relative)/*depcomp)
 
 # FIXME: common files, quagmire files, texinfo ... anything else?
 DISTFILES = $(quagmire/all_sources) $(quagmire/dist-files) $(EXTRA_DIST)
