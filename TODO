@@ -117,7 +117,7 @@ x make check
   gettext
 
 
-  we only required make 3.81 due to $(or)
+  we only require make 3.81 due to $(or)
   maybe we could relax this
   we could test a new automatic variable, like .VARIABLES, to see if
   we're using 3.80 (.FEATURES was added in 3.81)
@@ -140,6 +140,7 @@ x make check
 
 gnu make doesn't have a nice way to find a .mk on a path
 (without requiring the user to use -I)
+[ this does not matter any more; we just emit the full path ]
 
 see checkfunc.mk -- would be nice to have a built-in 'tr' function
 perhaps a builtin regsub too, for depcomp stuff
