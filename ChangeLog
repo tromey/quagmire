@@ -1,5 +1,9 @@
 2008-04-09  Tom Tromey  <tromey@redhat.com>
 
+	* example/simple/Quagmire (EXTRA_DIST): New variable
+
+2008-04-09  Tom Tromey  <tromey@redhat.com>
+
 	* src/data.mk (install/$(2)-dir-$(1)): Find data file in srcdir.
 	* example/simple/configure: Rebuilt.
 
