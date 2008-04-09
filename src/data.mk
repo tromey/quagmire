@@ -13,8 +13,9 @@ all: $$($(1)_$(3))
 install/$(2)-dir-$(1): $$($(1)_$(3)) | $$(DESTDIR)$$($(1)dir)
 	@list='$$($(1)_$(3))'; \
 	for f in $$$$list; do \
-	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "$$(INSTALL) $$$$f $$(DESTDIR)$$($(1)dir)/$$$$f"); \
-	  $$(INSTALL) $$$$f $$(DESTDIR)$$($(1)dir)/$$$$f; \
+	  if test -f $$(srcdir)/$$$$f; then src=$$(srcdir)/$$$$f; else src=$$$$f; fi; \
+	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "$$(INSTALL) $$$$src $$(DESTDIR)$$($(1)dir)/$$$$f"); \
+	  $$(INSTALL) $$$$src $$(DESTDIR)$$($(1)dir)/$$$$f; \
 	done
 install-$(2): install/$(2)-dir-$(1)
 
