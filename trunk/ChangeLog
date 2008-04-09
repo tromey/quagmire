@@ -1,3 +1,8 @@
+2008-04-09  Tom Tromey  <tromey@redhat.com>
+
+	* src/data.mk (install/$(2)-dir-$(1)): Find data file in srcdir.
+	* example/simple/configure: Rebuilt.
+
 2008-03-27  Tom Tromey  <tromey@redhat.com>
 
 	* src/dist.mk (quagmire/dist-files): Use quagmire_relative.

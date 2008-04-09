@@ -614,6 +614,7 @@ LIBS
 build_alias
 host_alias
 target_alias
+quagmire_relative
 quagmire_dir
 LIBOBJS
 LTLIBOBJS
@@ -1636,7 +1637,9 @@ program_transform_name=`echo $program_transform_name | sed -f conftest.sed`
 rm -f conftest.sed
 
 
-quagmire_dir='$(abs_srcdir)'/quagmire
+quagmire_relative=quagmire
+quagmire_dir='$(abs_srcdir)'/$quagmire_relative
+
 
 
 # Ugly hacks relying on autoconf internals.  Note that we do this here
@@ -2334,13 +2337,14 @@ LIBS!$LIBS$ac_delim
 build_alias!$build_alias$ac_delim
 host_alias!$host_alias$ac_delim
 target_alias!$target_alias$ac_delim
+quagmire_relative!$quagmire_relative$ac_delim
 quagmire_dir!$quagmire_dir$ac_delim
 LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 quagmire_config_files!$quagmire_config_files$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 41; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 42; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
