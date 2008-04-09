@@ -16,5 +16,7 @@ config.h_HEADERS = string.h nothing.h strings.h sys/types.h
 data_SCRIPTS = ekeyring.c
 data_DATA = something.h
 
+EXTRA_DIST = README.simple
+
 #ekeyring_LIBS = `pkg-config --libs gnome-keyring-1`
 #ekeyring: CFLAGS += `pkg-config --cflags gnome-keyring-1`
