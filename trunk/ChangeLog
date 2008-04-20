@@ -1,5 +1,10 @@
 2008-04-20  Tom Tromey  <tromey@redhat.com>
 
+	* src/post.mk: Include dejagnu.mk.
+	* src/dejagnu.mk: New file.
+
+2008-04-20  Tom Tromey  <tromey@redhat.com>
+
 	* src/compile.mk (quagmire/config_headers): New variable.
 	($(quagmire/all_objects)): New target.
 	* src/post.mk: Handle link and header files.

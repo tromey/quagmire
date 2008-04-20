@@ -150,6 +150,12 @@ $(foreach _dir,$(quagmire/dir-prefixes),$(if $($(_dir)_SCRIPTS),$(eval $(call qu
 include $(quagmire_dir)/help.mk
 include $(quagmire_dir)/dist.mk
 
+# Dejagnu support.  This is activated when the user sets
+# DEJAGNU_TEST_DIR.
+ifneq ($(DEJAGNU_TEST_DIR),)
+include $(quagmire_dir)/dejagnu.mk
+endif
+
 # Create targets that make install directories.  We use sort to
 # uniquify the list.
 $(foreach _dir,$(sort $(quagmire/all-install-dirs)),$(eval $(call quagmire/one-install-dir,$(_dir))))
