@@ -35,6 +35,10 @@ echo 'include $(quagmire_dir)/base.mk') > .quagmire/variables.in
 AC_CONFIG_COMMANDS_PRE([
   quagmire_config_files=$ac_config_files
   AC_SUBST(quagmire_config_files)
+  quagmire_header_files=$ac_config_headers
+  AC_SUBST(quagmire_header_files)
+  quagmire_link_files=$ac_config_links
+  AC_SUBST(quagmire_link_files)
 ])
 
 AC_CONFIG_FILES([Makefile:.quagmire/variables.in])])
