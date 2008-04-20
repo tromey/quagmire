@@ -102,6 +102,17 @@ _DATA and _SCRIPTS
       data_DATA = file
       bin_SCRIPTS = sh-script
 
+DejaGNU
+
+  You can run a dejagnu test suite by setting DEJAGNU_TEST_DIR to the
+  name of the subdirectory holding the testsuite.  This must be
+  relative to the project base directory.
+
+  You can override DEJATOOL if you have multiple tools to check.  The
+  test suite for each tool can be run in parallel; they are all run in
+  the same directory, so beware.
+
+
 Features of automake that are handled:
   'clean' family of targets
   dependency tracking
