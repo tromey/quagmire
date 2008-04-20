@@ -1,3 +1,7 @@
+2008-04-19  Tom Tromey  <tromey@redhat.com>
+
+	* src/texi.mk (quagmire/texi-bases): Don't add '.info'.
+
 2008-04-09  Tom Tromey  <tromey@redhat.com>
 
 	* example/simple/Quagmire (EXTRA_DIST): New variable
