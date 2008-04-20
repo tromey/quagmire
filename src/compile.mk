@@ -35,8 +35,16 @@ endif
 
 # Other languages here.
 
+# Pre-create dependency directories.
+quagmire/all_objects := $(call quagmire/source2obj,$(quagmire/all_sources))
+quagmire/all_objdeps := $(dir $(patsubst %.$(OBJEXT),$(DEPDIR)/%,$(quagmire/all_objects)))
+
+$(quagmire/all_objects): | $(quagmire/all_objdeps)
+
+$(sort $(quagmire/all_objdeps)):
+	@mkdir -p $@
 
 # Include dependency files.
--include $(patsubst %.$(OBJEXT),$(DEPDIR)/%.Po,$(call quagmire/source2obj,$(quagmire/all_sources)))
+-include $(addsuffix .$(OBJEXT),$(quagmire/all_objdeps))
 
 endif

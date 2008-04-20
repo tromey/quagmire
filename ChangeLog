@@ -1,5 +1,12 @@
 2008-04-19  Tom Tromey  <tromey@redhat.com>
 
+	* src/compile.mk (quagmire/all_objects): New variable.
+	(quagmire/all_objdeps): Likewise.
+	($(quagmire/all_objects)): New target.
+	($(sort $(quagmire/all_objdeps))): Likewise.
+
+2008-04-19  Tom Tromey  <tromey@redhat.com>
+
 	* src/texi.mk (quagmire/texi-bases): Don't add '.info'.
 
 2008-04-09  Tom Tromey  <tromey@redhat.com>
