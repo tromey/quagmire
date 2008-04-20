@@ -1,3 +1,7 @@
+2008-04-20  Tom Tromey  <tromey@redhat.com>
+
+	* src/sources.mk (quagmire/source2obj): Replace all suffixes.
+
 2008-04-19  Tom Tromey  <tromey@redhat.com>
 
 	* src/compile.mk (quagmire/all_objects): New variable.
