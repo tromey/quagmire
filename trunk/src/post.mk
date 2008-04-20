@@ -124,9 +124,15 @@ $(foreach _pfx,$(quagmire/dir-prefixes),$(eval $(call quagmire/apply-aggregate,$
 
 
 # No point in doing this conditionally since we will always have at
-# least one: the Makefile.
+# least one: the Makefile.  Note that config headers are handled the
+# same way as other config files, so we can just include them here.
 include $(quagmire_dir)/configuration.mk
-$(foreach _file,$(quagmire_config_files),$(eval $(call quagmire/config.status,$(subst :, ,$(_file)))))
+$(foreach _file,$(quagmire_config_files) $(quagmire_header_files),$(eval $(call quagmire/config.status,$(subst :, ,$(_file)))))
+
+ifneq ($(quagmire_link_files),)
+include $(quagmire_dir)/links.mk
+$(foreach _file,$(quagmire_link_files),$(eval $(call quagmire/config.links,$(subst :, ,$(_file)))))
+endif
 
 include $(quagmire_dir)/compile.mk
 include $(quagmire_dir)/tags.mk

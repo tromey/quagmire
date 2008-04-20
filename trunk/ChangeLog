@@ -1,5 +1,14 @@
 2008-04-20  Tom Tromey  <tromey@redhat.com>
 
+	* src/compile.mk (quagmire/config_headers): New variable.
+	($(quagmire/all_objects)): New target.
+	* src/post.mk: Handle link and header files.
+	* src/links.mk: New file.
+	* m4/quagmire.m4 (quagmire_link_files): New subst.
+	(quagmire_header_files): Likewise.
+
+2008-04-20  Tom Tromey  <tromey@redhat.com>
+
 	* src/sources.mk (quagmire/source2obj): Replace all suffixes.
 
 2008-04-19  Tom Tromey  <tromey@redhat.com>

@@ -47,4 +47,11 @@ $(sort $(quagmire/all_objdeps)):
 # Include dependency files.
 -include $(addsuffix .$(OBJEXT),$(quagmire/all_objdeps))
 
+
+# Arrange for object files to pre-depend on configuration headers.
+quagmire/config_headers =
+$(foreach _file,$(quagmire_header_files),$(eval quagmire/config_headers += $$(firstword $$(subst :, ,$(_file)))))
+
+$(quagmire/all_objects): | $(quagmire/config_headers)
+
 endif
