@@ -10,7 +10,7 @@ ifeq ($(findstring --no-split,$(MAKEINFO_FLAGS)),)
 MAKEINFO_FLAGS += --no-split
 endif
 
-quagmire/texi-bases := $(patsubst %.texi,%.info,$(patsubst %.texinfo,%.info,$(TEXINFOS)))
+quagmire/texi-bases := $(patsubst %.texi,%,$(patsubst %.texinfo,%,$(TEXINFOS)))
 quagmire/texi-infos := $(addsuffix .info,$(quagmire/texi-bases))
 quagmire/texi-dvis := $(addsuffix .dvi,$(quagmire/texi-bases))
 quagmire/texi-pdfs := $(addsuffix .pdf,$(quagmire/texi-bases))
