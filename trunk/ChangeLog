@@ -1,5 +1,12 @@
 2008-04-20  Tom Tromey  <tromey@redhat.com>
 
+	* src/data.mk (install/$(2)-dir-$(1)): Use basename of file as
+	install file name.  Install DATA files without executable
+	permission.
+	(uninstall/$(2)-dir-$(1)): Likewise.
+
+2008-04-20  Tom Tromey  <tromey@redhat.com>
+
 	* src/post.mk: Include dejagnu.mk.
 	* src/dejagnu.mk: New file.
 

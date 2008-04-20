@@ -14,16 +14,18 @@ install/$(2)-dir-$(1): $$($(1)_$(3)) | $$(DESTDIR)$$($(1)dir)
 	@list='$$($(1)_$(3))'; \
 	for f in $$$$list; do \
 	  if test -f $$(srcdir)/$$$$f; then src=$$(srcdir)/$$$$f; else src=$$$$f; fi; \
-	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "$$(INSTALL) $$$$src $$(DESTDIR)$$($(1)dir)/$$$$f"); \
-	  $$(INSTALL) $$$$src $$(DESTDIR)$$($(1)dir)/$$$$f; \
+	  dest=`basename $$$$f`; \
+	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "$$(INSTALL)$(if $(findstring DATA,$(3)), -m 0644) $$$$src $$(DESTDIR)$$($(1)dir)/$$$$dest"); \
+	  $$(INSTALL)$(if $(findstring DATA,$(3)), -m 0644) $$$$src $$(DESTDIR)$$($(1)dir)/$$$$dest; \
 	done
 install-$(2): install/$(2)-dir-$(1)
 
 uninstall/$(2)-dir-$(1):
 	@list='$$($(1)_$(3))'; \
 	for f in $$$$list; do \
-	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "rm -f $$(DESTDIR)$$($(1)dir)/$$$$f"); \
-	  rm -f $$(DESTDIR)$$($(1)dir)/$$$$f; \
+	  dest=`basename $$$$f`; \
+	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "rm -f $$(DESTDIR)$$($(1)dir)/$$$$dest"); \
+	  rm -f $$(DESTDIR)$$($(1)dir)/$$$$dest; \
 	done
 uninstall: uninstall/$(2)-dir-$(1)
 
