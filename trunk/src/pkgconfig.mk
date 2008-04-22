@@ -55,9 +55,9 @@ $$(quagmire/pkg-stamp): | .quagmire/pkg-config/results
 	@echo ok > $$@
 
 # Depend on the stamp- file so that we re-run this whenever needed.
-$$(quagmire/pkg-output): $$(quagmire/pkg-file-name) $$(quagmire/pkg-stamp)
+$$(quagmire/pkg-output): $$(quagmire/pkg-file-name) $$(quagmire/pkg-stamp) | quagmire/echo-n
 ifeq ($(findstring s,$(MAKEFLAGS)),)
-	@echo -n "Checking pkg-config $$($(2))..."
+	@$$(call quagmire/echo-n,"Checking pkg-config $$($(2))...")
 endif
 	@if $$(PKG_CONFIG) --exists $$($(2)); then \
 	  $(if $(findstring s,$(MAKEFLAGS)),true,echo " found"); \

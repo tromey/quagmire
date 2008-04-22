@@ -15,3 +15,15 @@ quagmire/value-name = $(subst $(quagmire/space),@s,$(subst /,@_,$(subst @,@@,$(s
 # move-if-change FROM TO
 # Expand to a move-if-change shell script.
 quagmire/move-if-change = if test -r "$(1)" && cmp -s "$(1)" "$(2)"; then rm -f "$(1)"; else mv -f "$(1)" "$(2)"; fi
+
+# quagmire/echo-n TEXT
+# A portable 'echo -n'.  Rules using this must pre-depend on the
+# target 'quagmire/echo-n'.  This initial value ensures this dependency.
+quagmire/echo-n = $(error quagmire/echo-n used -- missing dependency)
+
+# For the time being just re-use what autoconf discovered.  Later, if
+# need be, we can run a configury test here instead, using 'eval
+# include'.
+quagmire/echo-n:
+	$(eval override quagmire/echo-n = echo $$(ECHO_N) $$(1) "$$(ECHO_C)")
+.PHONY: quagmire/echo-n
