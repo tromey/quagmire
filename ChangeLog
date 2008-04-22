@@ -1,5 +1,13 @@
 2008-04-22  Tom Tromey  <tromey@redhat.com>
 
+	* src/pkgconfig.mk ($$(quagmire/pkg-output)): Use echo-n.
+	* src/checkheader.mk (.quagmire/header/%-frag): Use echo-n.
+	* src/checkfunc.mk (.quagmire/function/%-frag): Use echo-n.
+	* src/util.mk (quagmire/echo-n): New variable.
+	(quagmire/echo-n): New target.
+
+2008-04-22  Tom Tromey  <tromey@redhat.com>
+
 	* src/deps.mk ($(DEPDIR)): Remove.
 
 2008-04-20  Tom Tromey  <tromey@redhat.com>

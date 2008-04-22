@@ -3,9 +3,9 @@
 .quagmire/header: |.quagmire
 	@mkdir .quagmire/header
 
-.quagmire/header/%-frag: .quagmire/header/%.c
+.quagmire/header/%-frag: .quagmire/header/%.c | quagmire/echo-n
 ifeq (,$(findstring s,$(MAKEFLAGS)))
-	@echo -n "Checking for header $*... "
+	@$(call quagmire/echo-n,"Checking for header $*... ")
 endif
 	@upper=`echo '$*' | tr a-z./ A-Z__`; \
 	if $(CC) $(CFLAGS) $(CPPFLAGS) $< -c -o .quagmire/header/$*.$(OBJEXT) > .quagmire/header/$*.log 2>&1; then \

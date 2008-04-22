@@ -3,9 +3,9 @@
 # FIXME: gnu make needs a toupper macro.
 # FIXME: use portable sed construct from autoconf instead of tr?
 # FIXME: libraries
-.quagmire/function/%-frag: .quagmire/function/%.c
+.quagmire/function/%-frag: .quagmire/function/%.c | quagmire/echo-n
 ifeq (,$(findstring s,$(MAKEFLAGS)))
-	@echo -n "Checking for function $(*F)... "
+	@$(call quagmire/echo-n,"Checking for function $(*F)... ")
 endif
 	@upper=`echo '$(*F)' | tr a-z A-Z`; \
 	if $(CC) $(CFLAGS) $(CPPFLAGS) $< -o .quagmire/function/$(*F).exe > .quagmire/function/$(*F).log 2>&1; then \

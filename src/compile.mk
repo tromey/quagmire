@@ -41,7 +41,7 @@ quagmire/all_objdeps := $(dir $(patsubst %.$(OBJEXT),$(DEPDIR)/%,$(quagmire/all_
 
 $(quagmire/all_objects): | $(quagmire/all_objdeps)
 
-$(sort $(quagmire/all_objdeps)):
+$(filter-out $(DEPDIR),$(sort $(quagmire/all_objdeps))):
 	@mkdir -p $@
 
 # Include dependency files.
