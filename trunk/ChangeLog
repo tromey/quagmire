@@ -1,3 +1,7 @@
+2008-04-22  Tom Tromey  <tromey@redhat.com>
+
+	* src/deps.mk ($(DEPDIR)): Remove.
+
 2008-04-20  Tom Tromey  <tromey@redhat.com>
 
 	* src/data.mk (install/$(2)-dir-$(1)): Use basename of file as

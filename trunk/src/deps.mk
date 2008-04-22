@@ -1,9 +1,6 @@
-# deps.mk - Create and remove the dependency directory.
+# deps.mk - Manage the dependency directory.
 
 DEPDIR ?= .deps
-
-$(DEPDIR):
-	@mkdir $(DEPDIR)
 
 distclean/$(DEPDIR):
 	rm -rf $(DEPDIR)
