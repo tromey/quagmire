@@ -1,3 +1,9 @@
+2008-04-23  Tom Tromey  <tromey@redhat.com>
+
+	* example/simple/Quagmire.mk: Rename from Quagmire.
+	* README: Update.
+	* src/base.mk: Include Quagmire.mk.
+
 2008-04-22  Tom Tromey  <tromey@redhat.com>
 
 	* src/pkgconfig.mk ($$(quagmire/pkg-output)): Use echo-n.

@@ -10,7 +10,7 @@ VPATH = $(srcdir)
 all:
 
 # The user's "makefile".
-include $(srcdir)/Quagmire
+include $(srcdir)/Quagmire.mk
 
 # Quagmire.
 include $(quagmire_dir)/post.mk
