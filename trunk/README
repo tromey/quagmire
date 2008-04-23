@@ -10,9 +10,9 @@ which contains all the variable settings (AC_SUBSTs) found by
 configure. This macro also emits a Makefile in the build directory.
 
 Your part of the build is written a bit like automake input.  Your
-package should have a file named "Quagmire" -- this is actually a
-Makefile fragment.  Special variables in Quagmire are recognized and
-turned into rules.
+package should have a file named "Quagmire.mk" -- this is actually a
+Makefile fragment.  Special variables in Quagmire.mk are recognized
+and turned into rules.
 
 One general rule in Quagmire is that if there is a simple, generic GNU
 make way to do something, then we don't need special support for it.
