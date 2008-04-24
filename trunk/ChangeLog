@@ -1,3 +1,7 @@
+2008-04-24  Tom Tromey  <tromey@redhat.com>
+
+	* src/dist.mk (quagmire/dist-files): Use Quagmire.mk.
+
 2008-04-23  Tom Tromey  <tromey@redhat.com>
 
 	* example/simple/Quagmire.mk: Rename from Quagmire.

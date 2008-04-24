@@ -8,7 +8,7 @@
 DIST_FORMATS ?= bzip2
 
 # The wildcard here is quite bogus.
-quagmire/dist-files = Quagmire configure.ac configure \
+quagmire/dist-files = Quagmire.mk configure.ac configure \
 	$(wildcard $(srcdir)/*.m4) \
 	$(wildcard $(srcdir)/$(quagmire_relative)/*.mk) \
 	$(wildcard $(srcdir)/$(quagmire_relative)/*depcomp)
