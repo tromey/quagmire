@@ -41,7 +41,8 @@ _PROGRAMS - a list of the names of programs
   _SOURCES  all the source files.  headers are ignored.  other files
   are compiled into objects and linked in
 
-  _LINK  the linker to use; the default is $(LINK.c)
+  _LINK  the linker to use; the default is $(LINK.cc) if there are any
+  C++ sources in the program, $(LINK.c) otherwise.
 
   _OBJECTS  the object files.  the default is computed from _SOURCES
   _EXTRA_OBJECTS  if you don't specify _OBJECTS you can specify extra

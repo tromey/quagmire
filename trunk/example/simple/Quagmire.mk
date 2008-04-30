@@ -1,10 +1,12 @@
 # -*- makefile-gmake -*-
 
-bin_PROGRAMS = ekeyring
+bin_PROGRAMS = ekeyring cxxtest
 
 lib_LIBRARIES = libzardoz.a
 
 libzardoz.a_SOURCES = zardoz.c
+
+cxxtest_SOURCES = cxxtest.cc
 
 ekeyring_SOURCES = ekeyring.c something.h
 ekeyring_PACKAGES = gnome-keyring-1

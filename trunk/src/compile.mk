@@ -18,19 +18,19 @@ $(eval $(call quagmire/defcompiler,$(call quagmire/tool-name,$(CXX)),$(CXX)))
 endif
 
 ifneq ($(filter %.cxx,$(quagmire/all_sources)),)
-$(eval $(call quagmire/cxx-rules,cxx))
+$(eval $(call quagmire/cxx-rules,$(call quagmire/tool-name,$(CXX)),cxx))
 endif
 
 ifneq ($(filter %.C,$(quagmire/all_sources)),)
-$(eval $(call quagmire/cxx-rules,C))
+$(eval $(call quagmire/cxx-rules,$(call quagmire/tool-name,$(CXX)),C))
 endif
 
 ifneq ($(filter %.cpp,$(quagmire/all_sources)),)
-$(eval $(call quagmire/cxx-rules,cpp))
+$(eval $(call quagmire/cxx-rules,$(call quagmire/tool-name,$(CXX)),cpp))
 endif
 
 ifneq ($(filter %.cc,$(quagmire/all_sources)),)
-$(eval $(call quagmire/cxx-rules,cc))
+$(eval $(call quagmire/cxx-rules,$(call quagmire/tool-name,$(CXX)),cc))
 endif
 
 # Other languages here.

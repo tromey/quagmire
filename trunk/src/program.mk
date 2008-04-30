@@ -11,7 +11,7 @@ $(call quagmire/aggregate,$(1),$(2),$(EXEEXT),yes)
 
 # How to link this program.
 # FIXME: try to compute it more intelligently?
-$(1)_LINK ?= $$(LINK.c)
+$(1)_LINK ?= $$(if $$(filter %.cxx %.C %.cpp %.cc,$$($(1)_SOURCES)),$$(LINK.cc),$$(LINK.c))
 
 # The rule to build the program.
 # FIXME: exeext.  that requires a rewriting addition to install.
