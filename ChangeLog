@@ -1,5 +1,13 @@
 2008-04-30  Tom Tromey  <tromey@redhat.com>
 
+	* example/simple/Quagmire.mk (cxxtest_SOURCES): Add generated.h.
+	(generated.h): New target.
+	* example/simple/cxxtest.cc: Use generated.h.
+	* src/aggregate.mk ($(if $($(1)_CONFIG_HEADERS),$$($(1)_OBJECTS)):
+	Pre-depend on sources.
+
+2008-04-30  Tom Tromey  <tromey@redhat.com>
+
 	* example/simple/Quagmire.mk (cxxtest_SOURCES): New variable.
 	* example/simple/cxxtest.cc: New file.
 	* src/compile.mk: Update calls to quagmire/cxx-rules.

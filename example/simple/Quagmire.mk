@@ -6,7 +6,10 @@ lib_LIBRARIES = libzardoz.a
 
 libzardoz.a_SOURCES = zardoz.c
 
-cxxtest_SOURCES = cxxtest.cc
+cxxtest_SOURCES = cxxtest.cc generated.h
+
+generated.h:
+	echo "#define VAR 0" > $@
 
 ekeyring_SOURCES = ekeyring.c something.h
 ekeyring_PACKAGES = gnome-keyring-1

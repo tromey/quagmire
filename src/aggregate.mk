@@ -29,8 +29,9 @@ $(if $($(1)_PACKAGES),$(call quagmire/package,$(1),$(1)_PACKAGES,$(3)))
 quagmire/all_sources += $(call quagmire/filter-ignorable,$$($(1)_SOURCES))
 
 # The objects of this program have a pre-dependency on the config
-# headers.
-$(if $($(1)_CONFIG_HEADERS),$$($(1)_OBJECTS): | $($(1)_CONFIG_HEADERS))
+# headers and on all the source files.
+$$($(1)_OBJECTS): | $($(1)_CONFIG_HEADERS) $$($(1)_SOURCES)
+
 
 # Most aggregates are built by all, except when 'check' prefix is
 # used.
