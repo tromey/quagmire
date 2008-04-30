@@ -1,3 +1,11 @@
+2008-04-30  Tom Tromey  <tromey@redhat.com>
+
+	* example/simple/Quagmire.mk (cxxtest_SOURCES): New variable.
+	* example/simple/cxxtest.cc: New file.
+	* src/compile.mk: Update calls to quagmire/cxx-rules.
+	* src/lang-cxx.mk (%.$(OBJEXT)): Add quoting.
+	* src/program.mk ($(1)_LINK): Handle C++.
+
 2008-04-24  Tom Tromey  <tromey@redhat.com>
 
 	* src/dist.mk (quagmire/dist-files): Use Quagmire.mk.

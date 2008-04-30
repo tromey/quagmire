@@ -7,11 +7,16 @@
 # obsolete and I have left them out.
 DIST_FORMATS ?= bzip2
 
-# The wildcard here is quite bogus.
-quagmire/dist-files = Quagmire.mk configure.ac configure \
+# Fun uses of wildcard.  Some of these are probably bogus.
+# install-sh -- should be legacy, probably, but configure looks for it.
+quagmire/dist-files = Quagmire.mk \
+	$(wildcard $(srcdir)/configure.ac $(srcdir)/configure.in) configure \
+	$(wildcard $(srcdir)/install-sh $(srcdir)/install.sh) \
 	$(wildcard $(srcdir)/*.m4) \
 	$(wildcard $(srcdir)/$(quagmire_relative)/*.mk) \
-	$(wildcard $(srcdir)/$(quagmire_relative)/*depcomp)
+	$(wildcard $(srcdir)/$(quagmire_relative)/*depcomp) \
+	$(wildcard $(srcdir)/config.sub $(srcdir)/config.guess)
+
 
 # FIXME: common files, quagmire files, texinfo ... anything else?
 DISTFILES = $(quagmire/all_sources) $(quagmire/dist-files) $(EXTRA_DIST)

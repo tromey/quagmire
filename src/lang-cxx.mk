@@ -7,7 +7,7 @@ define quagmire/cxx-rules
 
 %.$(OBJEXT): %.$(2) | $(DEPDIR)
 ifeq ($(quagmire/depmode-$(1)),gcc3)
-	$(COMPILE.cc) -MT $$@ -MMD -MP -MF $(DEPDIR)/$$*.Po -c -o $$@ $$<
+	$$(COMPILE.cc) -MT $$@ -MMD -MP -MF $$(DEPDIR)/$$*.Po -c -o $$@ $$<
 else
 # All C++ compiler should accept -c -o.  If you know of one that
 # doesn't, let us know.
