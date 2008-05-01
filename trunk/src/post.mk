@@ -44,8 +44,9 @@ install-data: install-info
 quagmire/dir-vars := $(filter-out %srcdir %builddir,$(filter %dir,$(.VARIABLES)))
 
 # Directory prefixes are directory variables with the 'dir' stripped
-# off.
-quagmire/dir-prefixes := $(patsubst %dir,%,$(quagmire/dir-vars))
+# off.  Note that this also includes the phony prefixes "check" and
+# "noinst".
+quagmire/dir-prefixes := $(patsubst %dir,%,$(quagmire/dir-vars)) check noinst
 
 ifdef checkdir
 $(error Do not define variable named "checkdir")
