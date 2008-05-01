@@ -1,3 +1,14 @@
+2008-05-01  Tom Tromey  <tromey@redhat.com>
+
+	* src/post.mk (quagmire/dir-prefixes): Add check and dist.
+	* example/simple/Quagmire.mk (noinst_PROGRAMS): New variable.
+	(check_PROGRAMS): Likewise.
+	(cxxtest2_SOURCES): Likewise.
+	(cxxtest3_SOURCES): Likewise.
+	(cxxtest2.cc): New target.
+	(cxxtest3.cc): Likewise.
+	(distclean): Likewise.
+
 2008-04-30  Tom Tromey  <tromey@redhat.com>
 
 	* example/simple/Quagmire.mk (cxxtest_SOURCES): Add generated.h.
