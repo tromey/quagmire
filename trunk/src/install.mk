@@ -11,7 +11,9 @@ INSTALL ?= install
 # transformation should be applied. 
 define quagmire/install
 
-$(1)_INSTALLNAME ?= $(1)
+# We strip the directory component because we don't want to try to
+# install using the build subdirectory, if any.
+$(1)_INSTALLNAME ?= $(notdir $(1))
 # This does an extra exec in the transform case, but presents a nicer
 # command line to the user.
 override $(1)_REALINSTALLNAME = $(if $(4),$$(shell echo $$($(1)_INSTALLNAME) | sed '$$(program_transform_name)'),$$($(1)_INSTALLNAME))
