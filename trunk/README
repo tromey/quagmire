@@ -120,6 +120,7 @@ Features of automake that are handled:
   install, including DESTDIR, install-data, install-exec
   uninstall
   TAGS
+  dist_ and nodist_ prefixes
 
 Features of automake that are not handled:
   See TODO
