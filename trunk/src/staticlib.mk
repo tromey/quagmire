@@ -3,7 +3,7 @@
 # quagmire/library NAME DIRNAME
 # Define a static library named NAME.
 define quagmire/library
-$(if $(1)_SOURCES,,$(error Library $(1) specified but $(1)_SOURCES not defined))
+$(if $(or $($(1)_SOURCES),$(dist_$(1)_SOURCES),$(nodist_$(1)_SOURCES)),,$(error Library $(1) specified but no $(1)_SOURCES variable defined))
 
 # Note that we don't use ranlib.  It isn't needed on modern systems.
 # If you have a system that needs it, report a bug and we will fix it.

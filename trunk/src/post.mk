@@ -146,10 +146,12 @@ include $(quagmire_dir)/data.mk
 include $(quagmire_dir)/texi.mk
 
 # Install data.
-$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA))))
+$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA,))))
+$(foreach pfx,dist_ nodist_,$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(pfx)$(_dir)_DATA),$(eval $(call quagmire/data-directory,$(_dir),data,DATA,$(pfx))))))
 
 # Install scripts.
-$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS))))
+$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS,))))
+$(foreach pfx,dist_ nodist_,$(foreach _dir,$(quagmire/dir-prefixes),$(if $($(pfx)$(_dir)_SCRIPTS),$(eval $(call quagmire/data-directory,$(_dir),exec,SCRIPTS,$(pfx))))))
 
 include $(quagmire_dir)/help.mk
 include $(quagmire_dir)/dist.mk
