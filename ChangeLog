@@ -1,3 +1,7 @@
+2008-05-04  Tom Tromey  <tromey@redhat.com>
+
+	* src/install.mk ($(1)_INSTALLNAME): Use $(notdir).
+
 2008-05-01  Tom Tromey  <tromey@redhat.com>
 
 	* src/post.mk (quagmire/dir-prefixes): Add check and dist.
