@@ -19,7 +19,7 @@ $(1): CXXFLAGS += -fPIC
 $(1)_LINK ?= $$(LINK.c)
 
 # The rule to build the library.
-$(1): $$($(1)_OBJECTS)
+$(1): $$($(1)_OBJECTS) $$(filter $(quagmire/libs-ext-pattern),$$($(1)_LIBS))
 	$$($(1)_LINK) $(LDFLAGS) -shared -o $$@ $$($(1)_OBJECTS) $$($(1)_LIBS)
 
 endef

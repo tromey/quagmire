@@ -15,7 +15,7 @@ $(1)_LINK ?= $$(if $$(filter %.cxx %.C %.cpp %.cc,$$($(1)_SOURCES)),$$(LINK.cc),
 
 # The rule to build the program.
 # FIXME: exeext.  that requires a rewriting addition to install.
-$(1)$(EXEEXT): $$($(1)_OBJECTS)
+$(1)$(EXEEXT): $$($(1)_OBJECTS) $$(filter $(quagmire/libs-ext-pattern),$$($(1)_LIBS))
 	$$($(1)_LINK) $(LDFLAGS) -o $$@ $$($(1)_OBJECTS) $$($(1)_LIBS)
 
 endef

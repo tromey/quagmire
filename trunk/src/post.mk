@@ -96,6 +96,9 @@ quagmire/all-install-dirs :=
 OBJEXT ?= o
 EXEEXT ?=
 
+# Pattern that matches things from _LIBS which should be dependencies.
+quagmire/libs-ext-pattern := %.$(OBJEXT) %.a %.so
+
 include $(quagmire_dir)/util.mk
 
 include $(quagmire_dir)/once.mk

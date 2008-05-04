@@ -1,5 +1,11 @@
 2008-05-04  Tom Tromey  <tromey@redhat.com>
 
+	* src/sharedlib.mk ($(1)): Depend on filtered _LIBS.
+	* src/program.mk ($(1)$(EXEEXT)): Depend on filtered _LIBS.
+	* src/post.mk (quagmire/libs-ext-pattern): New variable.
+
+2008-05-04  Tom Tromey  <tromey@redhat.com>
+
 	* src/install.mk ($(1)_INSTALLNAME): Use $(notdir).
 
 2008-05-01  Tom Tromey  <tromey@redhat.com>
