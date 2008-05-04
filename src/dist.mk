@@ -19,7 +19,7 @@ quagmire/dist-files = Quagmire.mk \
 
 
 # FIXME: common files, quagmire files, texinfo ... anything else?
-DISTFILES = $(quagmire/all_sources) $(quagmire/dist-files) $(EXTRA_DIST)
+DISTFILES = $(quagmire/dist_sources) $(quagmire/dist-files) $(EXTRA_DIST)
 
 distdir = $(if $(PACKAGE_TARNAME),$(if $(PACKAGE_VERSION),$(PACKAGE_TARNAME)-$(PACKAGE_VERSION),$(error PACKAGE_VERSION not defined)),$(error PACKAGE_TARNAME not defined))
 

@@ -5,13 +5,13 @@
 # DIRNAME is the base of the install directory, e.g. "bin" or "check".
 define quagmire/program
 # FIXME: consider checking existence, not empty-ness
-$(if $($(1)_SOURCES),,$(error Program $(1) specified but $(1)_SOURCES not defined))
+$(if $(or $($(1)_SOURCES),$(dist_$(1)_SOURCES),$(nodist_$(1)_SOURCES)),,$(error Program $(1) specified but no $(1)_SOURCES variable defined))
 
 $(call quagmire/aggregate,$(1),$(2),$(EXEEXT),yes)
 
 # How to link this program.
 # FIXME: try to compute it more intelligently?
-$(1)_LINK ?= $$(if $$(filter %.cxx %.C %.cpp %.cc,$$($(1)_SOURCES)),$$(LINK.cc),$$(LINK.c))
+$(1)_LINK ?= $$(if $$(filter %.cxx %.C %.cpp %.cc,$$(quagmire/$(1)_SOURCES)),$$(LINK.cc),$$(LINK.c))
 
 # The rule to build the program.
 # FIXME: exeext.  that requires a rewriting addition to install.

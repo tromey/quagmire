@@ -1,5 +1,26 @@
 2008-05-04  Tom Tromey  <tromey@redhat.com>
 
+	* src/post.mk: Handle dist_ and nodist_ for _DATA and _SCRIPTS.
+	* src/data.mk (quagmire/data-directory): Add 'prefix' argument.
+	(quagmire/dist_sources): Update.
+	* example/simple/Quagmire.mk (nodist_cxxtest_SOURCES): New
+	variable.
+	(nodist_cxxtest2_SOURCES): Rename.
+	(nodist_cxxtest3_SOURCES): Likewise.
+	(cxxtest_SOURCES): Update.
+	(dist_data_DATA): Rename.
+	* src/dist.mk (DISTFILES): Use quagmire/dist_sources.
+	* src/staticlib.mk: Check dist_ and nodist_.
+	* src/sharedlib.mk: Check dist_ and nodist_.
+	* src/program.mk: Check dist_ and nodist_.
+	($(1)_LINK): Use quagmire/ variant of _SOURCES.
+	* src/aggregate.mk (quagmire/$(1)_SOURCES): New variable.
+	($(1)_BASE_OBJECTS): Use it.
+	($$($(1)_OBJECTS)): Likewise.
+	(quagmire/dist_sources): Update.
+
+2008-05-04  Tom Tromey  <tromey@redhat.com>
+
 	* src/sharedlib.mk ($(1)): Depend on filtered _LIBS.
 	* src/program.mk ($(1)$(EXEEXT)): Depend on filtered _LIBS.
 	* src/post.mk (quagmire/libs-ext-pattern): New variable.

@@ -8,9 +8,10 @@ lib_LIBRARIES = libzardoz.a
 
 libzardoz.a_SOURCES = zardoz.c
 
-cxxtest_SOURCES = cxxtest.cc generated.h
-cxxtest2_SOURCES = cxxtest2.cc generated.h
-cxxtest3_SOURCES = cxxtest3.cc generated.h
+cxxtest_SOURCES = cxxtest.cc
+nodist_cxxtest_SOURCES = generated.h
+nodist_cxxtest2_SOURCES = cxxtest2.cc generated.h
+nodist_cxxtest3_SOURCES = cxxtest3.cc generated.h
 
 generated.h:
 	echo "#define VAR 0" > $@
@@ -32,9 +33,6 @@ config.h_FUNCTIONS = strcmp strdup
 config.h_HEADERS = string.h nothing.h strings.h sys/types.h
 
 data_SCRIPTS = ekeyring.c
-data_DATA = something.h
+dist_data_DATA = something.h
 
 EXTRA_DIST = README.simple
-
-#ekeyring_LIBS = `pkg-config --libs gnome-keyring-1`
-#ekeyring: CFLAGS += `pkg-config --cflags gnome-keyring-1`
