@@ -4,9 +4,7 @@
 	@mkdir .quagmire/header
 
 .quagmire/header/%-frag: .quagmire/header/%.c | quagmire/echo-n
-ifeq (,$(findstring s,$(MAKEFLAGS)))
 	@$(call quagmire/echo-n,"Checking for header $*... ")
-endif
 	@upper=`echo '$*' | tr a-z./ A-Z__`; \
 	if $(CC) $(CFLAGS) $(CPPFLAGS) $< -c -o .quagmire/header/$*.$(OBJEXT) > .quagmire/header/$*.log 2>&1; then \
 	  result="#define HAVE_$$upper 1"; msg=found; \
@@ -16,7 +14,7 @@ endif
 	fi; \
 	rm -f .quagmire/header/$*.$(OBJEXT) 2> /dev/null; \
 	echo $$result > $@; \
-	$(if $(findstring s,$(MAKEFLAGS)),true,echo $$msg)
+	$(call quagmire/echo,$$msg)
 
 .quagmire/header/%.c: | .quagmire/header
 	@rm -f $@.tmp

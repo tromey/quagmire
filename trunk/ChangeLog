@@ -1,5 +1,16 @@
 2008-05-11  Paolo Bonzini  <bonzini@gnu.org>
 
+	* src/util.mk (quagmire/echo, quagmire/echo-n, quagmire/do): New.
+	* src/data.mk: Use them.
+	* src/configh.mk: Use them.
+	* src/checkheader.mk: Use them.
+	* src/checkfunc.mk: Use them.
+	* src/pkgconfig.mk: Use them.
+	* src/staticlib.mk: Use them.
+	* src/dejagnu.mk: Use them.
+
+2008-05-11  Paolo Bonzini  <bonzini@gnu.org>
+
 	* src/staticlib.mk: Don't extract system libraries.
 
 2008-05-04  Tom Tromey  <tromey@redhat.com>
