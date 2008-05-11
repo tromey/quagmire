@@ -20,8 +20,7 @@ ifneq ($$(quagmire/conv-libs),)
 	@for i in $$(quagmire/conv-libs); do \
 	  dir=`basename $$$${i}x` && \
 	  rm -rf $$$${dir} && \
-	  $(if $(findstring s,$(MAKEFLAGS)),true,echo "mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i") && \
-	  mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i; \
+	  $(call quagmire/do,mkdir -p $$$${dir} && cd $$$${dir} && ar x ../$$$$i); \
 	done
 endif
 	$(ARCHIVE) $$@ $$(quagmire/conv-lib-files) $$($(1)_OBJECTS)

@@ -23,9 +23,7 @@ $$(quagmire/cfgh-stamp): quagmire/do-nothing
 $(1): $$(quagmire/cfgh-stamp) \
 	$$(foreach _fn,$$($(1)_FUNCTIONS),$$(call quagmire/checkfunc,$$(_fn))) \
 	$$(foreach _fn,$$($(1)_HEADERS),$$(call quagmire/checkheader,$$(_fn)))
-ifeq (,$(findstring s,$(MAKEFLAGS)))
-	@echo "Creating $(1)"
-endif
+	@$(call quagmire/echo,Creating $(1))
 	@rm -f $(1)
 	@cat $$(foreach _fn,$$($(1)_FUNCTIONS),$$(call quagmire/checkfunc,$$(_fn))) $$(foreach _fn,$$($(1)_HEADERS),$$(call quagmire/checkheader,$$(_fn))) > $(1).tmp
 	@mv $(1).tmp $(1)
