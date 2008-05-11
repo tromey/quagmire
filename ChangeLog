@@ -1,3 +1,7 @@
+2008-05-11  Paolo Bonzini  <bonzini@gnu.org>
+
+	* src/staticlib.mk: Don't extract system libraries.
+
 2008-05-04  Tom Tromey  <tromey@redhat.com>
 
 	* src/post.mk: Handle dist_ and nodist_ for _DATA and _SCRIPTS.
@@ -17,7 +21,7 @@
 	* src/aggregate.mk (quagmire/$(1)_SOURCES): New variable.
 	($(1)_BASE_OBJECTS): Use it.
 	($$($(1)_OBJECTS)): Likewise.
-	(quagmire/dist_sources): Update.
+ 	(quagmire/dist_sources): Update.
 
 2008-05-04  Tom Tromey  <tromey@redhat.com>
 
