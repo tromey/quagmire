@@ -44,3 +44,10 @@ quagmire/echo-n:
 endif
 
 .PHONY: quagmire/echo-n
+
+# quagmire/create_directory NAME
+# Create a rule to make the directory named NAME.
+define quagmire/create-directory
+$(1):
+	@$(call quagmire/do,mkdir -p $$@)
+endef
