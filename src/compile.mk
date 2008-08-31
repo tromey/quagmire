@@ -54,4 +54,13 @@ $(foreach _file,$(quagmire_header_files),$(eval quagmire/config_headers += $$(fi
 
 $(quagmire/all_objects): | $(quagmire/config_headers)
 
+
+# Create directories for object files.  Note that we have to use full
+# paths here, to avoid VPATH handling.
+$(foreach _dir,$(abspath $(filter-out ./,$(sort $(dir $(quagmire/all_objects))))),$(eval $(call quagmire/create-directory,$(_dir))))
+
+# Make each object pre-depend on its directory.  Again, we have to use
+# full paths.
+$(foreach _file,$(quagmire/all_objects),$(if $(filter-out ./,$(dir $(_file))),$(eval $(_file): | $(abspath $(dir $(_file))))))
+
 endif
