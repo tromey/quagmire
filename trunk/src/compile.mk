@@ -37,16 +37,15 @@ endif
 
 # Pre-create dependency directories.
 quagmire/all_objects := $(call quagmire/source2obj,$(quagmire/all_sources))
-quagmire/all_objdeps := $(dir $(patsubst %.$(OBJEXT),$(DEPDIR)/%,$(quagmire/all_objects)))
+quagmire/all_depdirs := $(dir $(patsubst %.$(OBJEXT),$(DEPDIR)/%,$(quagmire/all_objects)))
 
-$(quagmire/all_objects): | $(quagmire/all_objdeps)
+$(quagmire/all_objects): | $(quagmire/all_depdirs)
 
-$(filter-out $(DEPDIR),$(sort $(quagmire/all_objdeps))):
+$(filter-out $(DEPDIR),$(sort $(quagmire/all_depdirs))):
 	@mkdir -p $@
 
 # Include dependency files.
--include $(addsuffix .$(OBJEXT),$(quagmire/all_objdeps))
-
+-include $(patsubst %.$(OBJEXT),$(DEPDIR)/%.Po,$(quagmire/all_objects))
 
 # Arrange for object files to pre-depend on configuration headers.
 quagmire/config_headers =
