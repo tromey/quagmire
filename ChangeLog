@@ -1,3 +1,11 @@
+2009-02-28  Pierre Phaneuf  <pphaneuf@gmail.com>
+	    Tom Tromey  <tromey@redhat.com>
+
+	* src/compile.mk (quagmire/all_depdirs): Rename from all_objdeps.
+	($(quagmire/all_objects)): Update.
+	($(filter-out $(DEPDIR),$(sort $(quagmire/all_depdirs)))): Update.
+	Correctly include dependency files.
+
 2008-08-31  Tom Tromey  <tromey@redhat.com>
 
 	* src/compile.mk (quagmire/all_objdeps): Sort.

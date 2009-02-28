@@ -6,7 +6,7 @@ check_PROGRAMS = cxxtest3
 
 lib_LIBRARIES = libzardoz.a
 
-libzardoz.a_SOURCES = zardoz.c
+libzardoz.a_SOURCES = zardoz.c sub/sub.c
 
 cxxtest_SOURCES = cxxtest.cc
 nodist_cxxtest_SOURCES = generated.h
