@@ -1,3 +1,7 @@
+2009-03-02  Pierre Phaneuf  <pphaneuf@gmail.com>
+
+	* src/configuration.mk (distclean/config.status): Added config.cache.
+
 2009-02-28  Pierre Phaneuf  <pphaneuf@gmail.com>
 	    Tom Tromey  <tromey@redhat.com>
 
