@@ -19,6 +19,6 @@ config.status: configure
 	./config.status --recheck
 
 distclean/config.status:
-	rm -rf config.status config.log autom4te.cache
+	rm -rf config.status config.log autom4te.cache config.cache
 .PHONY: distclean/config.status
 distclean: distclean/config.status
